@@ -46,9 +46,9 @@ export default function ResumePage() {
             <div>
               <div className="section-title">Skills</div>
               <ul className="mt-2 space-y-1 text-sm">
-                <li>JS/TS, Python, Java, SQL, Swift</li>
-                <li>React, REST APIs, Node.js, FastAPI</li>
-                <li>Git/GitHub, Agile, code reviews</li>
+                <li>Java, Python, JS/TS, C++, SQL</li>
+                <li>React, Node.js, FastAPI, AWS</li>
+                <li>PostgreSQL, Redis, Docker, Git</li>
               </ul>
             </div>
           </div>

@@ -10,6 +10,6 @@ export const education: Education[] = [
     school: "Arizona State University",
     program: "BS Computer Science (Software Engineering)",
     timeframe: "Dec 2025",
-    detail: "GPA 3.4"
+    detail: "cum laude – GPA: 3.4"
   }
 ];

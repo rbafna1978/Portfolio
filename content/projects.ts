@@ -2,114 +2,152 @@ import type { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    slug: "interview-ai-helper",
-    name: "Interview AI Helper",
-    summary: "Real-time interview prep with structured prompts and feedback loops.",
-    tech: ["React", "TypeScript", "FastAPI", "AWS"],
+    slug: "distributed-kv-store",
+    name: "Distributed Key-Value Store",
+    summary: "Fault-tolerant distributed database implementing Raft consensus.",
+    tech: ["Java", "Raft Consensus", "gRPC", "Protocol Buffers"],
     featured: true,
+    link: "https://github.com/rbafna1978/distributed-kv-store",
     homeHighlights: [
-      "Typed API integration for interview sessions",
-      "Prompt + response pipeline with predictable data flow",
-      "Focused UX for fast iteration"
+      "Fault-tolerant distributed database with Raft consensus",
+      "REST API supporting SET/GET/DELETE operations",
+      "Verified through chaos testing with leader crashes"
     ],
     problem: [
-      "Interview prep tools feel scattered and unstructured",
-      "Users need fast feedback without context switching"
+      "Distributed systems require strong consistency guarantees during failures",
+      "Manual failover is slow and error-prone"
     ],
     approach: [
-      "Built a focused React UI with strict TypeScript contracts",
-      "FastAPI backend for deterministic prompt/response flows",
-      "AWS deployment for consistent performance"
+      "Implemented Raft consensus algorithm for leader election and log replication",
+      "Designed gRPC client-server protocol with redirection",
+      "Verified consistency across node failures"
     ],
     architecture: [
-      "interview-ai-helper/",
-      "  ui/ (React + TS)",
-      "  api/ (FastAPI)",
-      "  services/ (prompt + scoring)",
-      "  infra/ (AWS deploy)"
+      "distributed-kv-store/",
+      "  raft/ (consensus logic)",
+      "  storage/ (log & state machine)",
+      "  grpc/ (client-server)",
+      "  cluster/ (node management)"
     ],
     decisions: [
-      "Kept the UI stateless where possible",
-      "Explicit schemas for every request/response",
-      "Thin backend endpoints to keep latency low"
+      "Used Raft for understandable consensus logic",
+      "gRPC for efficient inter-node communication",
+      "Protocol Buffers for compact serialization"
     ],
     improvements: [
-      "Add structured rubrics per role",
-      "Persist session analytics for trend tracking"
+      "Add snapshotting for faster recovery",
+      "Support dynamic cluster membership changes"
     ]
   },
   {
-    slug: "dropzone",
-    name: "DropZone",
-    summary: "iOS drop-off coordination with a clean SwiftUI flow.",
-    tech: ["SwiftUI", "iOS"],
+    slug: "github-dependency-visualizer",
+    name: "GitHub Dependency Visualizer",
+    summary: "Full stack web application generating interactive dependency graphs.",
+    tech: ["React", "TypeScript", "Node.js", "Cytoscape.js", "PostgreSQL"],
     featured: true,
     homeHighlights: [
-      "Single-screen flows with UI state validation",
-      "Consistent view models and bindings",
-      "Optimized for one-hand use"
+      "Analyzes repositories to generate interactive graphs with 1000+ nodes",
+      "Identifies circular dependencies and security vulnerabilities via OSV API",
+      "Supports npm, PyPI, and Go modules"
     ],
     problem: [
-      "Drop-off coordination often requires too many steps",
-      "Mobile UX should stay fast and single-tasked"
+      "Complex codebases make it difficult to visualize dependency depth and security risks",
+      "Circular dependencies can lead to fragile build systems"
     ],
     approach: [
-      "SwiftUI views with composable state",
-      "Clear flow boundaries and predictable navigation",
-      "Minimal surface area to reduce cognitive load"
+      "Built full-stack analyzer using OSV API for vulnerability detection",
+      "Implemented force-directed graph visualization with real-time filtering",
+      "Optimized analysis time from hours to seconds for large codebases"
     ],
     architecture: [
-      "dropzone/",
-      "  views/",
-      "  view-models/",
-      "  models/",
-      "  services/"
+      "dependency-visualizer/",
+      "  ui/ (React + Cytoscape)",
+      "  analyzer/ (Node.js)",
+      "  api/ (OSV Integration)",
+      "  db/ (PostgreSQL)"
     ],
     decisions: [
-      "Kept navigation stack shallow",
-      "Validated inputs before transitions",
-      "Separated UI state from domain models"
+      "Cytoscape.js for robust graph rendering",
+      "Real-time filtering to handle high node density",
+      "OSV API for standardized vulnerability data"
     ],
     improvements: [
-      "Add offline-safe caching",
-      "Extend flow with pickup confirmation"
+      "Add support for more package managers",
+      "Integrate with CI/CD for automated dependency audits"
     ]
   },
   {
-    slug: "ai-code-review",
-    name: "AI Code Review Tool",
-    summary: "Python tool for fast lint-like feedback on PRs.",
-    tech: ["Python"],
+    slug: "collaborative-editor",
+    name: "Real-Time Collaborative Code Editor",
+    summary: "Collaborative editing platform with CRDTs and WebSockets.",
+    tech: ["React", "WebSockets", "CRDT", "Redis", "Docker"],
     featured: true,
     homeHighlights: [
-      "Automated diff parsing",
-      "Rule-based checks for consistent reviews",
-      "Readable output for fast scan"
+      "Supports 50+ simultaneous users per document",
+      "Conflict-free Replicated Data Types (CRDT)",
+      "Redis pub/sub for horizontal scaling"
     ],
     problem: [
-      "Review bottlenecks slow down shipping",
-      "Inconsistent review style creates noisy feedback"
+      "Real-time collaboration is difficult to synchronize without conflicts",
+      "Standard locking mechanisms degrade user experience"
     ],
     approach: [
-      "Parsed diffs into structured chunks",
-      "Applied deterministic rules before AI prompts",
-      "Output grouped by severity"
+      "Used CRDTs for eventual consistency and operational transformation",
+      "WebSocket server with Redis pub/sub",
+      "Dockerized for easy deployment"
     ],
     architecture: [
-      "ai-code-review/",
-      "  parser/",
-      "  rules/",
-      "  prompts/",
-      "  reporter/"
+      "collaborative-editor/",
+      "  client/ (React)",
+      "  server/ (WebSockets)",
+      "  redis/ (Pub/Sub)",
+      "  docker-compose.yml"
     ],
     decisions: [
-      "Deterministic checks first, AI second",
-      "Clear severity buckets for findings",
-      "Lightweight CLI footprint"
+      "CRDTs over OT for decentralized conflict resolution",
+      "Redis for scalable message passing",
+      "WebSockets for low-latency updates"
     ],
     improvements: [
-      "Add repo-wide baselines",
-      "Integrate with PR comments"
+      "Add voice/video chat support",
+      "Implement version history and rollback"
+    ]
+  },
+  {
+    slug: "job-tracker",
+    name: "Job Application Tracker",
+    summary: "Chrome extension and dashboard for tracking job applications.",
+    tech: ["JavaScript", "Chrome API", "React", "Node.js", "PostgreSQL"],
+    featured: false,
+    homeHighlights: [
+      "Intelligent form detection for auto-filling applications",
+      "Reduced application time by 60%",
+      "Tracking 200+ applications with analytics"
+    ],
+    problem: [
+      "Applying to jobs is repetitive and time-consuming",
+      "Hard to keep track of application status across multiple sites"
+    ],
+    approach: [
+      "Chrome extension for DOM parsing and field mapping",
+      "Web dashboard for status updates and reminders",
+      "Analytics to show response rates"
+    ],
+    architecture: [
+      "job-tracker/",
+      "  extension/ (Chrome API)",
+      "  dashboard/ (React)",
+      "  api/ (Node.js)",
+      "  db/ (PostgreSQL)"
+    ],
+    decisions: [
+      "Browser extension for seamless integration",
+      "Automated field mapping to reduce manual entry",
+      "Centralized dashboard for overview"
+    ],
+    improvements: [
+      "Add AI-generated cover letters",
+      "Integrate with email to auto-update status"
     ]
   }
 ];

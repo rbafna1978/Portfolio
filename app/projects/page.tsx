@@ -21,7 +21,19 @@ export default function ProjectsPage() {
 
       {projects.map((project) => (
         <section key={project.slug} className="panel">
-          <div className="panel-header">{project.name}</div>
+          <div className="panel-header">
+            <span>{project.name}</span>
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-ink"
+              >
+                GitHub ↗
+              </a>
+            )}
+          </div>
           <div className="panel-body space-y-4">
             <div className="flex flex-wrap gap-2">
               {project.tech.map((item) => (

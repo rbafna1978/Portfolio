@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const featured = projects.filter((project) => project.featured);
+  const featured = projects.filter((project) => project.featured).slice(0, 3);
 
   return (
     <div className="space-y-6">
@@ -24,11 +24,11 @@ export default function HomePage() {
               Product-minded engineer shipping typed UI and reliable backends.
             </h1>
             <div className="flex flex-wrap gap-2">
-              <span className="tag">JS/TS</span>
+              <span className="tag">Java</span>
               <span className="tag">Python</span>
+              <span className="tag">JS/TS</span>
               <span className="tag">React</span>
-              <span className="tag">FastAPI</span>
-              <span className="tag">SQL</span>
+              <span className="tag">AWS</span>
             </div>
           </div>
           <div className="rounded-md border border-border bg-bg px-4 py-3">

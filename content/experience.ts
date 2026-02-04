@@ -4,17 +4,15 @@ export const experiences: Experience[] = [
   {
     company: "J. Miller Custom Cues",
     role: "Software Engineering Intern",
-    context: "Capstone",
+    context: "Internship",
     scope: [
-      "Scoped requirements with stakeholders",
-      "Built internal tooling with a tight feedback loop",
-      "Shipped incrementally with review checkpoints"
+      "Collaborated with 3-person team to ship production 3D configurator using Three.js and React",
+      "Built PostgreSQL REST API with Stripe payment integration processing live orders"
     ],
-    tech: ["JavaScript", "TypeScript", "SQL", "REST APIs"],
+    tech: ["Three.js", "React", "PostgreSQL", "Stripe"],
     impact: [
-      "Simplified workflow steps",
-      "Improved data consistency",
-      "Reduced manual checks"
+      "Reduced customer revisions by 35% and achieved sub 200ms response times",
+      "Eliminated checkout errors and simplified workflow steps"
     ]
   },
   {
@@ -22,15 +20,13 @@ export const experiences: Experience[] = [
     role: "Software Engineering Intern",
     context: "Internship",
     scope: [
-      "Delivered features across the stack",
-      "Refined UI flows based on real user feedback",
-      "Collaborated with engineers in Agile sprints"
+      "Optimized production SQL queries processing 500K+ records with composite indexes",
+      "Refactored payment microservice adding idempotency checks and database constraints"
     ],
-    tech: ["React", "Node.js", "Python", "SQL"],
+    tech: ["SQL", "PostgreSQL", "React", "Node.js"],
     impact: [
-      "Cleaner data flow across services",
-      "Faster iteration cycles",
-      "More predictable releases"
+      "Reduced dashboard page load time from 8 seconds to under 2 seconds",
+      "Eliminated duplicate transaction bugs across 10K+ daily transactions"
     ]
   }
 ];

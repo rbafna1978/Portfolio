@@ -4,6 +4,7 @@ export type Project = {
   summary: string;
   tech: string[];
   featured: boolean;
+  link?: string;
   homeHighlights: string[];
   problem: string[];
   approach: string[];
