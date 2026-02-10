@@ -23,28 +23,28 @@ export const skills = [
     skills: [
       {
         name: "Java",
-        imageLight: "https://cdn.simpleicons.org/openjdk/000000",
-        imageDark: "https://cdn.simpleicons.org/openjdk/FFFFFF",
+        imageLight: "https://skillicons.dev/icons?i=java",
+        imageDark: "https://skillicons.dev/icons?i=java",
       },
       {
         name: "Python",
-        imageLight: "https://cdn.simpleicons.org/python/3776AB",
-        imageDark: "https://cdn.simpleicons.org/python/3776AB",
+        imageLight: "https://skillicons.dev/icons?i=py",
+        imageDark: "https://skillicons.dev/icons?i=py",
       },
       {
         name: "JavaScript",
-        imageLight: "https://cdn.simpleicons.org/javascript/F7DF1E",
-        imageDark: "https://cdn.simpleicons.org/javascript/F7DF1E",
+        imageLight: "https://skillicons.dev/icons?i=js",
+        imageDark: "https://skillicons.dev/icons?i=js",
       },
       {
         name: "TypeScript",
-        imageLight: "https://cdn.simpleicons.org/typescript/3178C6",
-        imageDark: "https://cdn.simpleicons.org/typescript/3178C6",
+        imageLight: "https://skillicons.dev/icons?i=ts",
+        imageDark: "https://skillicons.dev/icons?i=ts",
       },
       {
         name: "SQL",
-        imageLight: "https://cdn.simpleicons.org/postgresql/4169E1",
-        imageDark: "https://cdn.simpleicons.org/postgresql/4169E1",
+        imageLight: "https://skillicons.dev/icons?i=postgres",
+        imageDark: "https://skillicons.dev/icons?i=postgres",
       },
     ],
   },
@@ -53,28 +53,28 @@ export const skills = [
     skills: [
       {
         name: "React",
-        imageLight: "https://cdn.simpleicons.org/react/61DAFB",
-        imageDark: "https://cdn.simpleicons.org/react/61DAFB",
+        imageLight: "https://skillicons.dev/icons?i=react",
+        imageDark: "https://skillicons.dev/icons?i=react",
       },
       {
         name: "Next.js",
-        imageLight: "https://cdn.simpleicons.org/nextdotjs/000000",
-        imageDark: "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
+        imageLight: "https://skillicons.dev/icons?i=nextjs",
+        imageDark: "https://skillicons.dev/icons?i=nextjs",
       },
       {
         name: "Node.js",
-        imageLight: "https://cdn.simpleicons.org/nodedotjs/339933",
-        imageDark: "https://cdn.simpleicons.org/nodedotjs/339933",
+        imageLight: "https://skillicons.dev/icons?i=nodejs",
+        imageDark: "https://skillicons.dev/icons?i=nodejs",
       },
       {
         name: "Express",
-        imageLight: "https://cdn.simpleicons.org/express/000000",
-        imageDark: "https://cdn.simpleicons.org/express/FFFFFF",
+        imageLight: "https://skillicons.dev/icons?i=express",
+        imageDark: "https://skillicons.dev/icons?i=express",
       },
       {
         name: "Three.js",
-        imageLight: "https://cdn.simpleicons.org/threedotjs/000000",
-        imageDark: "https://cdn.simpleicons.org/threedotjs/FFFFFF",
+        imageLight: "https://skillicons.dev/icons?i=threejs",
+        imageDark: "https://skillicons.dev/icons?i=threejs",
       },
     ],
   },
@@ -83,13 +83,13 @@ export const skills = [
     skills: [
       {
         name: "PostgreSQL",
-        imageLight: "https://cdn.simpleicons.org/postgresql/4169E1",
-        imageDark: "https://cdn.simpleicons.org/postgresql/4169E1",
+        imageLight: "https://skillicons.dev/icons?i=postgres",
+        imageDark: "https://skillicons.dev/icons?i=postgres",
       },
       {
         name: "Docker",
-        imageLight: "https://cdn.simpleicons.org/docker/2496ED",
-        imageDark: "https://cdn.simpleicons.org/docker/2496ED",
+        imageLight: "https://skillicons.dev/icons?i=docker",
+        imageDark: "https://skillicons.dev/icons?i=docker",
       },
       {
         name: "AWS",
@@ -98,13 +98,13 @@ export const skills = [
       },
       {
         name: "Git",
-        imageLight: "https://cdn.simpleicons.org/git/F05032",
-        imageDark: "https://cdn.simpleicons.org/git/F05032",
+        imageLight: "https://skillicons.dev/icons?i=git",
+        imageDark: "https://skillicons.dev/icons?i=git",
       },
       {
         name: "Redis",
-        imageLight: "https://cdn.simpleicons.org/redis/DC382D",
-        imageDark: "https://cdn.simpleicons.org/redis/DC382D",
+        imageLight: "https://skillicons.dev/icons?i=redis",
+        imageDark: "https://skillicons.dev/icons?i=redis",
       },
     ],
   },
