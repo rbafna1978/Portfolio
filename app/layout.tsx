@@ -28,6 +28,27 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Rishit Bafna | Portfolio",
   description: "Rishit Bafna - software engineer focused on reliable systems and polished web products.",
+  openGraph: {
+    title: "Rishit Bafna | Portfolio",
+    description: "Software engineer focused on reliable systems and polished web products.",
+    url: "https://portfolio-olive-seven-51.vercel.app", // Replace with your actual URL
+    siteName: "Rishit Bafna Portfolio",
+    images: [
+      {
+        url: "/og-image.png", // Fallback until you have a real screenshot
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rishit Bafna | Portfolio",
+    description: "Software engineer focused on reliable systems and polished web products.",
+    images: ["/og-image.png"], // Fallback
+  },
 };
 
 export default function RootLayout({
