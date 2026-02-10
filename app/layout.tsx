@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rishit Bafna | Portfolio",
     description: "Software engineer focused on reliable systems and polished web products.",
-    url: "https://portfolio-olive-seven-51.vercel.app", // Replace with your actual URL
+    url: "https://rishitbafna.vercel.app/", // Replace with your actual URL
     siteName: "Rishit Bafna Portfolio",
     images: [
       {
