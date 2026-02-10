@@ -1,27 +1,47 @@
 {
-  "name": "rishit-portfolio",
+  "name": "portfolio-rishit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "@emailjs/browser": "^4.4.1",
+    "@paper-design/shaders-react": "^0.0.54",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tabler/icons-react": "^3.35.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cobe": "^0.6.5",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "html2canvas": "^1.4.1",
+    "lucide-react": "^0.544.0",
+    "motion": "^12.23.22",
+    "next": "^15.5.11",
+    "next-themes": "^0.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-intersection-observer": "^10.0.0",
+    "react-parallax-tilt": "^1.7.313",
+    "shiki": "^3.12.2",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "autoprefixer": "10.4.19",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
-    "postcss": "8.4.38",
-    "tailwindcss": "3.4.4",
-    "typescript": "latest"
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.3.8",
+    "typescript": "^5"
   }
 }

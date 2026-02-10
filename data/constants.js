@@ -1,0 +1,208 @@
+export const Bio = {
+  name: "Rishit Bafna",
+  roles: [
+    "Software Engineer",
+    "Full Stack Developer",
+    "Distributed Systems Builder",
+    "Product-Minded Engineer",
+  ],
+  description:
+    "I build reliable, high-performance products across web and backend systems. I care about thoughtful UX, clean architecture, and measurable engineering impact.",
+  email: "bafnarishit@gmail.com",
+  github: "https://github.com/rbafna1978",
+  resume: "/resume.pdf",
+  linkedin: "https://www.linkedin.com/in/rishit-bafna",
+  twitter: "https://x.com/rbafna1978",
+  insta: "https://www.instagram.com/rishitbafna",
+  facebook: "https://www.facebook.com/rishitbafna",
+};
+
+export const skills = [
+  {
+    title: "Languages",
+    skills: [
+      {
+        name: "Java",
+        imageLight: "https://cdn.simpleicons.org/openjdk/000000",
+        imageDark: "https://cdn.simpleicons.org/openjdk/FFFFFF",
+      },
+      {
+        name: "Python",
+        imageLight: "https://cdn.simpleicons.org/python/3776AB",
+        imageDark: "https://cdn.simpleicons.org/python/3776AB",
+      },
+      {
+        name: "JavaScript",
+        imageLight: "https://cdn.simpleicons.org/javascript/F7DF1E",
+        imageDark: "https://cdn.simpleicons.org/javascript/F7DF1E",
+      },
+      {
+        name: "TypeScript",
+        imageLight: "https://cdn.simpleicons.org/typescript/3178C6",
+        imageDark: "https://cdn.simpleicons.org/typescript/3178C6",
+      },
+      {
+        name: "SQL",
+        imageLight: "https://cdn.simpleicons.org/postgresql/4169E1",
+        imageDark: "https://cdn.simpleicons.org/postgresql/4169E1",
+      },
+    ],
+  },
+  {
+    title: "Frameworks",
+    skills: [
+      {
+        name: "React",
+        imageLight: "https://cdn.simpleicons.org/react/61DAFB",
+        imageDark: "https://cdn.simpleicons.org/react/61DAFB",
+      },
+      {
+        name: "Next.js",
+        imageLight: "https://cdn.simpleicons.org/nextdotjs/000000",
+        imageDark: "https://cdn.simpleicons.org/nextdotjs/FFFFFF",
+      },
+      {
+        name: "Node.js",
+        imageLight: "https://cdn.simpleicons.org/nodedotjs/339933",
+        imageDark: "https://cdn.simpleicons.org/nodedotjs/339933",
+      },
+      {
+        name: "Express",
+        imageLight: "https://cdn.simpleicons.org/express/000000",
+        imageDark: "https://cdn.simpleicons.org/express/FFFFFF",
+      },
+      {
+        name: "Three.js",
+        imageLight: "https://cdn.simpleicons.org/threedotjs/000000",
+        imageDark: "https://cdn.simpleicons.org/threedotjs/FFFFFF",
+      },
+    ],
+  },
+  {
+    title: "Tools & Infra",
+    skills: [
+      {
+        name: "PostgreSQL",
+        imageLight: "https://cdn.simpleicons.org/postgresql/4169E1",
+        imageDark: "https://cdn.simpleicons.org/postgresql/4169E1",
+      },
+      {
+        name: "Docker",
+        imageLight: "https://cdn.simpleicons.org/docker/2496ED",
+        imageDark: "https://cdn.simpleicons.org/docker/2496ED",
+      },
+      {
+        name: "AWS",
+        imageLight: "https://skillicons.dev/icons?i=aws",
+        imageDark: "https://skillicons.dev/icons?i=aws",
+      },
+      {
+        name: "Git",
+        imageLight: "https://cdn.simpleicons.org/git/F05032",
+        imageDark: "https://cdn.simpleicons.org/git/F05032",
+      },
+      {
+        name: "Redis",
+        imageLight: "https://cdn.simpleicons.org/redis/DC382D",
+        imageDark: "https://cdn.simpleicons.org/redis/DC382D",
+      },
+    ],
+  },
+];
+
+export const experiences = [
+  {
+    id: 0,
+    img: "https://placehold.co/240x120/111827/ffffff?text=JMC",
+    logoWide: true,
+    role: "Software Engineering Intern",
+    company: "J. Miller Custom Cues",
+    date: "Aug 2025 - Dec 2025",
+    desc: "Collaborated in a 3-person team to ship a production 3D configurator using Three.js and React. Built PostgreSQL-backed APIs with Stripe integration and reduced customer revisions by 35% while sustaining sub-200ms API response times.",
+    skills: ["React", "Three.js", "PostgreSQL", "Stripe", "TypeScript"],
+    doc: "",
+  },
+  {
+    id: 1,
+    img: "https://placehold.co/240x120/0f172a/ffffff?text=WINSOFT",
+    logoWide: true,
+    role: "Software Engineering Intern",
+    company: "Winssoft Technologies India Pvt. Ltd.",
+    date: "May 2025 - July 2025",
+    desc: "Optimized production SQL queries over 500K+ rows and refactored payment services with idempotency safeguards. Reduced dashboard load time from 8s to under 2s and eliminated duplicate transaction defects across 10K+ daily events.",
+    skills: ["SQL", "PostgreSQL", "Node.js", "React", "Performance"],
+    doc: "",
+  },
+];
+
+export const education = [
+  {
+    id: 0,
+    img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
+    school: "Arizona State University, Tempe",
+    date: "Jan 2026 - May 2027",
+    grade: "In Progress",
+    desc: "MS in Computer Science focused on distributed systems, operating systems, and scalable product engineering.",
+    degree: "Master of Science in Computer Science",
+  },
+  {
+    id: 1,
+    img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
+    school: "Arizona State University, Tempe",
+    date: "Aug 2021 - Dec 2025",
+    grade: "3.4 GPA (Cum Laude)",
+    desc: "BS in Computer Science with software engineering concentration. Built strong foundations in data structures, algorithms, systems, and full-stack software development.",
+    degree: "Bachelor of Science in Computer Science",
+  },
+];
+
+export const projects = [
+  {
+    id: 0,
+    title: "Distributed Key-Value Store",
+    date: "2025",
+    description:
+      "Fault-tolerant distributed database implementing Raft consensus with leader election, log replication, and chaos-tested failover behavior.",
+    image: "https://placehold.co/1400x900/0b1220/5eead4?text=Distributed+KV+Store",
+    tags: ["Java", "Raft", "gRPC", "Protocol Buffers", "Distributed Systems"],
+    category: "web app",
+    github: "https://github.com/rbafna1978/distributed-kv-store",
+    webapp: "",
+  },
+  {
+    id: 1,
+    title: "GitHub Dependency Visualizer",
+    date: "2025",
+    description:
+      "Analyzes repositories into interactive dependency graphs with vulnerability checks and circular dependency detection for large codebases.",
+    image: "https://placehold.co/1400x900/111827/22d3ee?text=Dependency+Visualizer",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Cytoscape"],
+    category: "web app",
+    github: "https://github.com/rbafna1978",
+    webapp: "",
+  },
+  {
+    id: 2,
+    title: "Real-Time Collaborative Code Editor",
+    date: "2024",
+    description:
+      "Multi-user editor using WebSockets and CRDT-based sync to support low-latency collaboration with horizontal scaling patterns.",
+    image: "https://placehold.co/1400x900/0f172a/a3e635?text=Collaborative+Editor",
+    tags: ["React", "WebSockets", "CRDT", "Redis", "Docker"],
+    category: "web app",
+    github: "https://github.com/rbafna1978",
+    webapp: "",
+  },
+  {
+    id: 3,
+    title: "Job Application Tracker",
+    date: "2024",
+    description:
+      "Chrome extension plus dashboard for tracking applications, analytics, and automation to reduce repetitive workflow time.",
+    image: "https://placehold.co/1400x900/101827/f59e0b?text=Job+Tracker",
+    tags: ["JavaScript", "Chrome API", "React", "Node.js", "PostgreSQL"],
+    category: "web app",
+    github: "https://github.com/rbafna1978",
+    webapp: "",
+  },
+];
