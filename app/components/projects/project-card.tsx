@@ -20,8 +20,9 @@ interface ProjectCardProps {
 }
 
 const categoryColors: Record<string, string> = {
-  "web app": "hsl(var(--chart-1))",
-  "machine learning": "hsl(var(--chart-4))",
+  "systems": "hsl(var(--chart-1))",
+  "web app": "hsl(var(--chart-3))",
+  "tools": "hsl(var(--chart-4))",
   "ios app": "hsl(var(--primary))",
   ".net app": "hsl(var(--chart-2))",
 }
@@ -60,7 +61,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <motion.div
       ref={cardRef}
-      className="relative group"
+      className="relative group flex flex-col h-full"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -77,8 +78,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       }}
     >
       <motion.div
-        className="relative bg-card border border-border overflow-hidden h-full flex flex-col
-                   hover:border-border/80 transition-colors duration-300"
+        className="relative bg-card border border-border overflow-hidden flex flex-col h-full
+                   hover:border-primary/30 transition-colors duration-300"
         animate={{
           rotateX,
           rotateY,
@@ -146,9 +147,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           </div>
         </div>
 
-                {/* Content section */}
-                <div className="p-5 flex-1 flex flex-col">
-                  {/* Date */}          <div className="flex items-center gap-2 mb-3">
+        {/* Content section */}
+        <div className="p-5 flex-1 flex flex-col">
+          {/* Date */}
+          <div className="flex items-center gap-2 mb-3">
             <div className="w-1 h-1 bg-primary" />
             <span className="font-plex-mono text-[10px] text-muted-foreground">
               {date}
@@ -164,7 +166,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
           <div className="mb-4">
             <motion.div
               initial={false}
-              animate={{ height: isExpanded ? "auto" : "2.5rem" }}
+              animate={{ height: isExpanded ? "auto" : "3rem" }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="overflow-hidden"
             >
@@ -172,21 +174,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 {description}
               </p>
             </motion.div>
-            {description.length > 100 && (
+            {description.length > 80 && (
               <button
                 onClick={(e) => {
                   e.stopPropagation()
                   onToggleExpand?.()
                 }}
-                className="font-plex-mono text-[10px] text-primary hover:text-primary/80 uppercase tracking-wider mt-1 transition-colors duration-200"
+                className="font-plex-mono text-[9px] text-primary hover:text-primary/80 uppercase tracking-wider mt-1 transition-colors duration-200"
               >
-                {isExpanded ? "Read less" : "Read more"}
+                {isExpanded ? "Show Less" : "Show More"}
               </button>
             )}
           </div>
 
-          {/* Tech stack - compact */}
-          <TechTerminal technologies={tags} compact className="mb-4" />
+          {/* Tech stack - Full Terminal */}
+          <TechTerminal 
+            technologies={tags} 
+            projectName={title} 
+            className="mb-4" 
+          />
 
           {/* Action links */}
           <div className="flex gap-3 pt-3 mt-auto border-t border-border">

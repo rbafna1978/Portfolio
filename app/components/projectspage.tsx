@@ -4,15 +4,10 @@ import React, { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { projects } from "@/data/constants"
 import {
-  FeaturedCard,
   ProjectCard,
-  CategoryFilter,
   ArchiveStats,
-  getProjectCategories,
-  getProjectCounts,
   calculateArchiveStats,
 } from "./projects"
-import type { ProjectCategory } from "./projects"
 
 // Hand-drawn squiggly arrow SVG (reused from hero)
 const SquigglyArrow = () => (
@@ -43,35 +38,11 @@ const SquigglyArrow = () => (
 
 export default function ProjectsPage() {
   console.log("ProjectsPage rendered with:", projects?.length, "projects");
-  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all")
   const [expandedProjectId, setExpandedProjectId] = useState<number | null>(null)
 
   const handleToggleExpand = (id: number) => {
     setExpandedProjectId((prev) => (prev === id ? null : id))
   }
-
-  // Get categories and counts
-  const categories = useMemo(
-    () => getProjectCategories(projects),
-    []
-  )
-
-  const projectCounts = useMemo(
-    () => getProjectCounts(projects),
-    []
-  )
-
-  // Filter projects based on active category
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === "all") return projects
-    return projects.filter(
-      (p) => p.category.toLowerCase() === activeCategory.toLowerCase()
-    )
-  }, [activeCategory])
-
-  // Featured project is the first one (most recent)
-  const featuredProject = filteredProjects[0]
-  const remainingProjects = filteredProjects.slice(1)
 
   // Force re-calculation if needed
   const archiveStats = useMemo(() => calculateArchiveStats(projects), [projects.length])
@@ -94,7 +65,7 @@ export default function ProjectsPage() {
             Section
           </span>
           <span className="font-bebas text-lg md:text-xl text-foreground tracking-wide">
-            05
+            04
           </span>
           <div className="w-6 h-px bg-primary mt-1" />
           <span className="font-plex-mono text-[9px] uppercase tracking-[0.2em] text-text-tertiary mt-1">
@@ -153,85 +124,26 @@ export default function ProjectsPage() {
             </span>
           </motion.div>
 
-          {/* Category Filter */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 md:mt-14"
-          >
-            <CategoryFilter
-              categories={categories}
-              activeCategory={activeCategory}
-              onCategoryChange={setActiveCategory}
-              projectCounts={projectCounts}
-            />
-          </motion.div>
-
-          {/* Bento Grid Layout */}
+          {/* Projects Grid */}
           <div className="mt-10 md:mt-14">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.4 }}
-              >
-                {filteredProjects.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                    {/* Featured Project - Large Card taking 2 columns on lg */}
-                    {featuredProject && (
-                      <div className="md:col-span-2 lg:col-span-2 min-h-[450px]">
-                        <FeaturedCard
-                          title={featuredProject.title}
-                          description={featuredProject.description}
-                          image={featuredProject.image}
-                          category={featuredProject.category}
-                          date={featuredProject.date}
-                          tags={featuredProject.tags || []}
-                          github={featuredProject.github}
-                          webapp={featuredProject.webapp}
-                        />
-                      </div>
-                    )}
-
-                    {/* All remaining projects */}
-                    {remainingProjects.map((project, index) => (
-                      <ProjectCard
-                        key={project.id}
-                        title={project.title}
-                        description={project.description}
-                        image={project.image}
-                        category={project.category}
-                        date={project.date}
-                        tags={project.tags || []}
-                        github={project.github}
-                        webapp={project.webapp}
-                        index={index + 1}
-                        isExpanded={expandedProjectId === project.id}
-                        onToggleExpand={() => handleToggleExpand(project.id)}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  /* Empty State */
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex flex-col items-center justify-center py-20 text-center"
-                  >
-                    <div className="w-16 h-16 mb-4 border border-dashed border-border flex items-center justify-center">
-                      <span className="font-bebas text-2xl text-text-tertiary">?</span>
-                    </div>
-                    <p className="font-plex-mono text-sm text-muted-foreground">
-                      No projects found in this category
-                    </p>
-                  </motion.div>
-                )}
-              </motion.div>
-            </AnimatePresence>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  category={project.category}
+                  date={project.date}
+                  tags={project.tags || []}
+                  github={project.github}
+                  webapp={project.webapp}
+                  index={index}
+                  isExpanded={expandedProjectId === project.id}
+                  onToggleExpand={() => handleToggleExpand(project.id)}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Archive Stats */}

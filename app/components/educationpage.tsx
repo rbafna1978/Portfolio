@@ -68,7 +68,7 @@ export default function EducationPage() {
             Section
           </span>
           <span className="font-bebas text-lg md:text-xl text-foreground tracking-wide">
-            03
+            02
           </span>
           <div className="w-6 h-px bg-primary mt-1" />
           <span className="font-plex-mono text-[9px] uppercase tracking-[0.2em] text-text-tertiary mt-1">
