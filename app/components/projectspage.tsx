@@ -40,12 +40,23 @@ export default function ProjectsPage() {
   console.log("ProjectsPage rendered with:", projects?.length, "projects");
   const [expandedProjectId, setExpandedProjectId] = useState<number | null>(null)
 
+  const sortedProjects = useMemo(
+    () =>
+      [...projects].sort((a, b) => {
+        const yearA = Number.parseInt(a.date, 10) || 0
+        const yearB = Number.parseInt(b.date, 10) || 0
+        if (yearB !== yearA) return yearB - yearA
+        return a.title.localeCompare(b.title)
+      }),
+    []
+  )
+
   const handleToggleExpand = (id: number) => {
     setExpandedProjectId((prev) => (prev === id ? null : id))
   }
 
   // Force re-calculation if needed
-  const archiveStats = useMemo(() => calculateArchiveStats(projects), [projects.length])
+  const archiveStats = useMemo(() => calculateArchiveStats(sortedProjects), [sortedProjects])
 
   return (
     <section
@@ -127,7 +138,7 @@ export default function ProjectsPage() {
           {/* Projects Grid */}
           <div className="mt-10 md:mt-14">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {projects.map((project, index) => (
+              {sortedProjects.map((project, index) => (
                 <ProjectCard
                   key={project.id}
                   title={project.title}
@@ -137,7 +148,7 @@ export default function ProjectsPage() {
                   date={project.date}
                   tags={project.tags || []}
                   github={project.github}
-                  webapp={project.webapp}
+                  liveUrl={project.liveUrl}
                   index={index}
                   isExpanded={expandedProjectId === project.id}
                   onToggleExpand={() => handleToggleExpand(project.id)}

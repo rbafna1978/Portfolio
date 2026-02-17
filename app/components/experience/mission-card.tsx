@@ -129,7 +129,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
           />
 
           {/* Header Row */}
-          <div className="flex items-start justify-between gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
             {/* Left: Logo + Info */}
             <div className="flex items-start gap-4">
               {/* Company Logo */}
@@ -169,7 +169,7 @@ export const MissionCard: React.FC<MissionCardProps> = ({
             </div>
 
             {/* Right: Status + Date */}
-            <div className="flex flex-col items-end gap-2">
+            <div className="flex flex-col items-start sm:items-end gap-2">
               <StatusIndicator status={isActive ? "active" : "complete"} />
               <span className="font-plex-mono text-[10px] text-muted-foreground">
                 {date}

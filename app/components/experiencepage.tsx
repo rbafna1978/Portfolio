@@ -54,7 +54,7 @@ export default function ExperiencePage() {
   return (
     <section
       id="experience"
-      className="relative min-h-screen bg-background text-foreground overflow-hidden py-20 md:py-28"
+      className="relative min-h-screen bg-background text-foreground overflow-hidden pt-20 pb-32 md:pt-28 md:pb-28"
     >
       {/* Section Number Tag - Top Right */}
       <motion.div
