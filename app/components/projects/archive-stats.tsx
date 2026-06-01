@@ -91,8 +91,6 @@ export const ArchiveStats: React.FC<ArchiveStatsProps> = ({
 export const calculateArchiveStats = (
   projects: Array<{ tags?: string[]; date?: string }>
 ): StatItem[] => {
-  console.log("Calculating stats for projects:", projects?.length);
-  
   if (!projects || projects.length === 0) {
     return [
       { value: 4, label: "Projects", suffix: "" },

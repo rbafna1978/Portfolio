@@ -95,7 +95,7 @@ export default function SkillsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-bebas text-[clamp(4rem,18vw,14rem)] leading-[0.85] tracking-tight text-center md:text-left"
+            className="font-bebas text-[clamp(3.25rem,15vw,14rem)] leading-[0.85] tracking-tight text-center md:text-left mt-12 md:mt-0"
           >
             Skills
           </motion.h2>

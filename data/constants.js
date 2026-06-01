@@ -150,13 +150,37 @@ export const education = [
     img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
     school: "Arizona State University, Tempe",
     date: "Aug 2021 - Dec 2025",
-    grade: "3.4 GPA (Cum Laude)",
+    grade: "3.42 GPA",
     desc: "BS in Computer Science with software engineering concentration. Built strong foundations in data structures, algorithms, systems, and full-stack software development.",
     degree: "Bachelor of Science in Computer Science",
   },
 ];
 
 export const projects = [
+  {
+    id: 4,
+    title: "RiskStream",
+    date: "2026",
+    description:
+      "End-to-end real-time fraud detection pipeline over 500K+ transactions. Point-in-time-correct features eliminate label leakage with training/serving parity verified by automated tests. Achieves 0.96 PR-AUC on 0.17% class imbalance using XGBoost + Isolation Forest with Platt calibration, serving inference at p99 < 50ms with zero database reads on the hot path. PSI-based drift monitoring triggers automatic retraining and hot-swaps new model versions without service restart.",
+    image: "https://placehold.co/1400x900/0b1220/f97316?text=RiskStream",
+    tags: ["Python", "XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "Docker"],
+    category: "Machine Learning",
+    github: "https://github.com/rbafna1978/riskstream",
+    liveUrl: "",
+  },
+  {
+    id: 5,
+    title: "CyberSentient RAG Pipeline",
+    date: "2026",
+    description:
+      "Hybrid retrieval pipeline over 100K+ CVE/CWE/CAPEC records combining dense vector search, BM25 sparse retrieval, and Reciprocal Rank Fusion. Cross-encoder reranking (Qwen3-Reranker-8B) disambiguates semantically similar threat queries to reduce false retrievals on ambiguous CVE lookups. Delivers 400ms end-to-end query latency for real-time cybersecurity threat intelligence across a 6-feed ingestion pipeline.",
+    image: "https://placehold.co/1400x900/020617/a78bfa?text=CyberSentient+RAG",
+    tags: ["Python", "Qwen3-Embedding-8B", "Qdrant", "BM25", "FastAPI", "RAG"],
+    category: "Machine Learning",
+    github: "https://github.com/rbafna1978/cybersentient-rag",
+    liveUrl: "",
+  },
   {
     id: 0,
     title: "Distributed Key-Value Store",

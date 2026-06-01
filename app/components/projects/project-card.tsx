@@ -22,6 +22,7 @@ interface ProjectCardProps {
 const categoryColors: Record<string, string> = {
   "systems": "hsl(var(--chart-1))",
   "web app": "hsl(var(--chart-3))",
+  "machine learning": "hsl(var(--chart-5))",
   "tools": "hsl(var(--chart-4))",
   "ios app": "hsl(var(--primary))",
   ".net app": "hsl(var(--chart-2))",
