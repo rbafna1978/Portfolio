@@ -229,4 +229,28 @@ export const projects = [
     github: "https://github.com/rbafna1978/Interview_Helper",
     liveUrl: "https://interview-helper-three.vercel.app",
   },
+  {
+    id: 6,
+    title: "F1 Strategy RL Pipeline",
+    date: "2026",
+    description:
+      "Reproducible data pipeline assembling a lap-level feature store across 2018-2025 F1 seasons, unifying FastF1, Ergast/Jolpica, and Open-Meteo data through an 18-step cached, resumable workflow. Feeds four downstream models — tire degradation, safety-car prediction, DNF risk, and a reinforcement-learning strategy agent — with three frozen neural sub-models acting as physics components inside the RL environment.",
+    image: "https://placehold.co/1400x900/111827/ef4444?text=F1+Strategy+RL",
+    tags: ["Python", "PyTorch", "FastF1", "pandas", "scikit-learn", "Reinforcement Learning"],
+    category: "Machine Learning",
+    github: "https://github.com/rbafna1978/f1_strategy",
+    liveUrl: "",
+  },
+  {
+    id: 7,
+    title: "easymon",
+    date: "2026",
+    description:
+      "Terminal-based system monitor for macOS that translates raw performance metrics into plain-English explanations instead of dumping numbers. Focuses on macOS-specific signals like memory pressure and purgeable storage that traditional tools surface poorly, distributed via Homebrew, pip, and curl install.",
+    image: "https://placehold.co/1400x900/0f172a/34d399?text=easymon",
+    tags: ["Python", "macOS", "CLI", "Homebrew"],
+    category: "Systems",
+    github: "https://github.com/rbafna1978/easymon",
+    liveUrl: "",
+  },
 ];
