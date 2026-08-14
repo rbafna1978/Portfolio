@@ -159,6 +159,7 @@ export const education = [
 export const projects = [
   {
     id: 4,
+    order: 2,
     title: "RiskStream",
     date: "2026",
     description:
@@ -171,6 +172,7 @@ export const projects = [
   },
   {
     id: 5,
+    order: 3,
     title: "CyberSentient RAG Pipeline",
     date: "2026",
     description:
@@ -183,6 +185,7 @@ export const projects = [
   },
   {
     id: 0,
+    order: 1,
     title: "Distributed Key-Value Store",
     date: "2025",
     description:
@@ -195,6 +198,7 @@ export const projects = [
   },
   {
     id: 1,
+    order: 5,
     title: "Multithreaded HTTP Server",
     date: "2024",
     description:
@@ -207,6 +211,7 @@ export const projects = [
   },
   {
     id: 2,
+    order: 6,
     title: "GitHub Dependency Visualizer",
     date: "2025",
     description:
@@ -219,6 +224,7 @@ export const projects = [
   },
   {
     id: 3,
+    order: 7,
     title: "AI Interview Coach",
     date: "2026",
     description:
@@ -231,6 +237,7 @@ export const projects = [
   },
   {
     id: 6,
+    order: 4,
     title: "F1 Strategy RL Pipeline",
     date: "2026",
     description:
@@ -243,6 +250,7 @@ export const projects = [
   },
   {
     id: 7,
+    order: 8,
     title: "easymon",
     date: "2026",
     description:
