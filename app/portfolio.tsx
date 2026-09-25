@@ -502,7 +502,7 @@ function Sidebar() {
   }, [])
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-fg/10 bg-ink/80 p-8 backdrop-blur-xl lg:flex" style={MONO}>
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-fg/10 bg-ink/80 px-6 py-8 backdrop-blur-xl lg:flex" style={MONO}>
       <div>
         <div className="text-3xl leading-none text-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></div>
         <div className="mt-2 text-xs uppercase tracking-[0.25em] text-fg/60">Software Engineer</div>
@@ -520,8 +520,8 @@ function Sidebar() {
         ))}
       </nav>
 
-      <div className="space-y-1 text-xs uppercase tracking-[0.2em] text-fg/60">
-        <div>Tempe, AZ · <span className="text-fg/70">{time || "--:--:--"}</span></div>
+      <div className="space-y-1 text-xs uppercase tracking-[0.1em] text-fg/60">
+        <div className="whitespace-nowrap">Tempe, AZ · <span className="text-fg/70">{time || "--:--:--"}</span></div>
         <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: LIME }} />Open to opportunities</div>
         <a href={Bio.resume} target="_blank" rel="noreferrer" data-hover className="mt-3 inline-block border-b border-fg/30 pb-0.5 text-fg/80 hover:text-fg">Resume ↗</a>
       </div>
