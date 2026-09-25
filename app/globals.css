@@ -47,8 +47,15 @@ body {
   font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
 }
 
+/* jump links: clear the fixed mobile bar; on desktop pull the heading up so it doesn't land mid-screen */
 section[id] {
   scroll-margin-top: 4rem;
+}
+
+@media (min-width: 1024px) {
+  section[id]:not(#top) {
+    scroll-margin-top: -3rem;
+  }
 }
 
 a:focus-visible,
