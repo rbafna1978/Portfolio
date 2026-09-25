@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import {
+  AnimatePresence,
   MotionConfig,
   motion,
   useAnimationFrame,
@@ -15,7 +16,7 @@ import {
   useVelocity,
 } from "motion/react"
 import { useTheme } from "next-themes"
-import { Moon, Sun } from "lucide-react"
+import { Menu, Moon, Sun, X } from "lucide-react"
 import { Bio, skills, experiences, education, projects } from "@/data/constants"
 
 const RED = "var(--red)"
@@ -475,17 +476,72 @@ function useSectionSpy() {
 
 function MobileNav() {
   const { active } = useSectionSpy()
+  const [open, setOpen] = useState(false)
+  const current = SECTIONS.find((s) => s.id === active)?.label
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false)
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", onKey)
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", onKey)
+    }
+  }, [open])
+
   return (
-    <nav aria-label="Sections" className="fixed inset-x-0 top-0 z-50 flex items-center gap-3 border-b border-fg/10 bg-ink/85 py-2 pl-4 pr-20 backdrop-blur-md lg:hidden" style={MONO}>
-      <span className="text-2xl leading-none text-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></span>
-      <div className="flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none]">
-        {SECTIONS.map((s) => (
-          <a key={s.id} href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className="inline-flex min-h-11 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.15em]" style={{ color: active === s.id ? "var(--ink)" : "color-mix(in srgb, var(--fg) 65%, transparent)", background: active === s.id ? LIME : undefined }}>
-            {s.label}
-          </a>
-        ))}
+    <div className="lg:hidden" style={MONO}>
+      <div className="fixed inset-x-0 top-0 z-[56] flex h-16 items-center gap-3 border-b border-fg/10 bg-ink/85 pl-4 pr-32 backdrop-blur-md">
+        <span className="text-2xl leading-none text-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></span>
+        <span className="truncate text-xs uppercase tracking-[0.2em] text-fg/60">{current}</span>
+        <button
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="absolute right-[4.75rem] top-2.5 flex h-11 w-11 items-center justify-center rounded-full border border-fg/20"
+        >
+          {open ? <X size={18} aria-hidden /> : <Menu size={18} aria-hidden />}
+        </button>
       </div>
-    </nav>
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            id="mobile-menu"
+            aria-label="Sections"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            className="fixed inset-0 z-[55] flex flex-col justify-center gap-2 bg-ink px-8 pt-16"
+          >
+            {SECTIONS.map((s, i) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                onClick={(e) => {
+                  // the menu locks page scroll, so navigate only after it has unlocked
+                  e.preventDefault()
+                  setOpen(false)
+                  setTimeout(() => {
+                    document.getElementById(s.id)?.scrollIntoView()
+                    history.replaceState(null, "", `#${s.id}`)
+                  }, 60)
+                }}
+                aria-current={active === s.id ? "true" : undefined}
+                className="flex min-h-14 items-baseline gap-4 border-b border-fg/10 py-2 uppercase"
+                style={{ color: active === s.id ? LIME : "var(--fg)" }}
+              >
+                <span className="text-xs tracking-[0.3em] text-fg/60">{String(i).padStart(2, "0")}</span>
+                <span className="text-5xl leading-none" style={BEBAS}>{s.label}</span>
+              </a>
+            ))}
+            <a href={Bio.resume} target="_blank" rel="noreferrer" className="mt-6 inline-flex min-h-11 items-center text-xs uppercase tracking-[0.2em] text-fg/70">Resume ↗</a>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
@@ -540,7 +596,7 @@ function ThemeToggle() {
       onClick={() => setTheme(dark ? "light" : "dark")}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       data-hover
-      className="fixed right-5 top-5 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-fg/20 bg-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
+      className="fixed right-5 top-[10px] z-[60] lg:top-5 flex h-11 w-11 items-center justify-center rounded-full border border-fg/20 bg-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
     >
       {dark ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />}
     </button>

@@ -48,7 +48,7 @@ body {
 }
 
 section[id] {
-  scroll-margin-top: 3.5rem;
+  scroll-margin-top: 4rem;
 }
 
 a:focus-visible,
