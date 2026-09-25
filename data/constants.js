@@ -114,7 +114,7 @@ export const projects = [
       "Hybrid retrieval pipeline over 100K+ CVE/CWE/CAPEC records combining dense vector search, BM25 sparse retrieval, and Reciprocal Rank Fusion. Cross-encoder reranking (Qwen3-Reranker-8B) disambiguates semantically similar threat queries to reduce false retrievals on ambiguous CVE lookups. Delivers 400ms end-to-end query latency for real-time cybersecurity threat intelligence across a 6-feed ingestion pipeline.",
     tags: ["Python", "Qwen3-Embedding-8B", "Qdrant", "BM25", "FastAPI", "RAG"],
     category: "Machine Learning",
-    github: "https://github.com/rbafna1978/cybersentient-rag",
+    github: "",
     liveUrl: "",
   },
   {
