@@ -42,10 +42,9 @@ export default function ProjectsPage() {
   const sortedProjects = useMemo(
     () =>
       [...projects].sort((a, b) => {
-        const yearA = Number.parseInt(a.date, 10) || 0
-        const yearB = Number.parseInt(b.date, 10) || 0
-        if (yearB !== yearA) return yearB - yearA
-        return a.title.localeCompare(b.title)
+        const orderA = a.order ?? Number.POSITIVE_INFINITY
+        const orderB = b.order ?? Number.POSITIVE_INFINITY
+        return orderA - orderB
       }),
     []
   )
