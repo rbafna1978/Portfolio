@@ -95,7 +95,7 @@ export const education = [
 export const projects = [
   {
     id: 4,
-    order: 2,
+    order: 1,
     title: "RiskStream",
     date: "2026",
     description:
@@ -119,7 +119,7 @@ export const projects = [
   },
   {
     id: 0,
-    order: 1,
+    order: 4,
     title: "Distributed Key-Value Store",
     date: "2025",
     description:
@@ -167,7 +167,7 @@ export const projects = [
   },
   {
     id: 6,
-    order: 4,
+    order: 2,
     title: "F1 Race Strategy RL",
     date: "2026 (Ongoing)",
     description:
