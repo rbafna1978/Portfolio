@@ -61,3 +61,18 @@ button:focus-visible {
   background: var(--red);
   color: #fff;
 }
+
+/* theme switch: the new theme is revealed by a growing circle (see ThemeToggle) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}

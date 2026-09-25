@@ -15,6 +15,7 @@ import {
   useTransform,
   useVelocity,
 } from "motion/react"
+import { flushSync } from "react-dom"
 import { useTheme } from "next-themes"
 import { Menu, Moon, Sun, X } from "lucide-react"
 import { Bio, skills, experiences, education, projects } from "@/data/constants"
@@ -95,7 +96,7 @@ function Cursor() {
 function Word({ children }: { children: string }) {
   return (
     <div
-      className="select-none whitespace-nowrap leading-[0.8] tracking-tighter text-[clamp(6rem,34vw,22rem)] lg:text-[clamp(8rem,27vw,30rem)]"
+      className="select-none whitespace-nowrap leading-[0.8] tracking-tighter text-[clamp(6rem,66vw,22rem)] lg:text-[clamp(8rem,27vw,30rem)]"
       style={BEBAS}
     >
       {children}
@@ -107,7 +108,7 @@ function Hero() {
   const [first, last] = [Bio.name.split(" ")[0], Bio.name.split(" ").slice(1).join(" ")]
   const btn = "rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] transition-transform hover:scale-105"
   return (
-    <section id="top" className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-28 lg:px-12">
+    <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden px-6 pb-12 pt-24 lg:min-h-screen lg:px-12 lg:pb-16 lg:pt-28">
       <h1 className="sr-only">{Bio.name} — Software Engineer</h1>
       <div aria-hidden>
         <motion.div initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.1, ease: EASE }} className="overflow-hidden">
@@ -589,14 +590,44 @@ function Sidebar() {
 function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const btn = useRef<HTMLButtonElement>(null)
   useEffect(() => setMounted(true), [])
   const dark = mounted ? resolvedTheme === "dark" : true
+
+  // circular reveal that grows out of the button (View Transitions API); falls back to an instant switch
+  const toggle = async () => {
+    const next = dark ? "light" : "dark"
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => { ready: Promise<void> } }
+    if (!doc.startViewTransition || !btn.current || matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setTheme(next)
+      return
+    }
+    const b = btn.current.getBoundingClientRect()
+    const x = b.left + b.width / 2
+    const y = b.top + b.height / 2
+    const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
+    const t = doc.startViewTransition(() => {
+      document.documentElement.classList.toggle("dark", next === "dark")
+      flushSync(() => setTheme(next))
+    })
+    try {
+      await t.ready
+      document.documentElement.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+        { duration: 700, easing: "cubic-bezier(0.22, 1, 0.36, 1)", pseudoElement: "::view-transition-new(root)" }
+      )
+    } catch {
+      // transition was skipped (e.g. tab hidden); the theme has already switched
+    }
+  }
+
   return (
     <button
-      onClick={() => setTheme(dark ? "light" : "dark")}
+      ref={btn}
+      onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       data-hover
-      className="fixed right-5 top-[10px] z-[60] lg:top-5 flex h-11 w-11 items-center justify-center rounded-full border border-fg/20 bg-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
+      className="fixed right-5 top-[10px] z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-fg/20 bg-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110 lg:top-5"
     >
       {dark ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />}
     </button>
