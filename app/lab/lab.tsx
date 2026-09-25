@@ -364,8 +364,8 @@ function Education() {
   // MS runs Jan 2026 – May 2027; progress is computed client-side so it stays current
   const [ms, setMs] = useState(0.5)
   useEffect(() => {
-    const a = new Date("2026-01-12").getTime()
-    const b = new Date("2027-05-15").getTime()
+    const a = new Date(2026, 0, 1).getTime()
+    const b = new Date(2027, 4, 1).getTime()
     setMs(Math.min(1, Math.max(0, (Date.now() - a) / (b - a))))
   }, [])
   const cards = [
