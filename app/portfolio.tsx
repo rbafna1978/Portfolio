@@ -108,9 +108,9 @@ function Hero() {
   const [first, last] = [Bio.name.split(" ")[0], Bio.name.split(" ").slice(1).join(" ")]
   const btn = "rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] transition-transform hover:scale-105"
   return (
-    <section id="top" className="relative flex min-h-svh flex-col justify-between overflow-hidden px-6 pb-12 pt-24 lg:min-h-screen lg:justify-end lg:px-12 lg:pb-16 lg:pt-28">
+    <section id="top" className="relative flex flex-col overflow-hidden px-6 pb-16 pt-24 lg:min-h-screen lg:justify-end lg:px-12 lg:pb-16 lg:pt-28">
       <h1 className="sr-only">{Bio.name} — Software Engineer</h1>
-      <div className="flex items-center gap-3 pt-2 text-xs uppercase tracking-[0.12em] text-fg/60 lg:hidden" style={MONO}>
+      <div className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.12em] text-fg/60 lg:hidden" style={MONO}>
         <span className="h-2 w-2 shrink-0 animate-pulse rounded-full" style={{ background: LIME }} />
         Open to opportunities · Tempe, AZ
       </div>
@@ -126,7 +126,7 @@ function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
-        className="mt-10 flex flex-wrap items-end justify-between gap-6"
+        className="mt-6 flex flex-wrap items-end justify-between gap-6 lg:mt-10"
       >
         <p className="max-w-xl text-lg text-fg/70 sm:text-xl">
           Software engineer building distributed systems and ML infrastructure. M.S. Computer Science at Arizona State University.
