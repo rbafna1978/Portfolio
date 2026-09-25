@@ -42,6 +42,11 @@ export const skills = [
         imageDark: "https://skillicons.dev/icons?i=ts",
       },
       {
+        name: "C++",
+        imageLight: "https://skillicons.dev/icons?i=cpp",
+        imageDark: "https://skillicons.dev/icons?i=cpp",
+      },
+      {
         name: "SQL",
         imageLight: "https://skillicons.dev/icons?i=postgres",
         imageDark: "https://skillicons.dev/icons?i=postgres",
@@ -72,6 +77,16 @@ export const skills = [
         imageDark: "https://skillicons.dev/icons?i=express",
       },
       {
+        name: "FastAPI",
+        imageLight: "https://skillicons.dev/icons?i=fastapi",
+        imageDark: "https://skillicons.dev/icons?i=fastapi",
+      },
+      {
+        name: "Tailwind CSS",
+        imageLight: "https://skillicons.dev/icons?i=tailwind",
+        imageDark: "https://skillicons.dev/icons?i=tailwind",
+      },
+      {
         name: "Three.js",
         imageLight: "https://skillicons.dev/icons?i=threejs",
         imageDark: "https://skillicons.dev/icons?i=threejs",
@@ -85,6 +100,11 @@ export const skills = [
         name: "PostgreSQL",
         imageLight: "https://skillicons.dev/icons?i=postgres",
         imageDark: "https://skillicons.dev/icons?i=postgres",
+      },
+      {
+        name: "MongoDB",
+        imageLight: "https://skillicons.dev/icons?i=mongodb",
+        imageDark: "https://skillicons.dev/icons?i=mongodb",
       },
       {
         name: "Docker",
@@ -118,7 +138,7 @@ export const experiences = [
     role: "Software Engineering Intern",
     company: "J. Miller Custom Cues",
     date: "Aug 2025 - Dec 2025",
-    desc: "Collaborated in a 3-person team to ship a production 3D configurator using Three.js and React. Built PostgreSQL-backed APIs with Stripe integration and reduced customer revisions by 35% while sustaining sub-200ms API response times.",
+    desc: "Shipped a production 3D product configurator using Three.js and React, reducing customer design revision cycles by 35%. Built a PostgreSQL REST API with Stripe integration processing 100+ orders with transactional cart management and sub-200ms response times.",
     skills: ["React", "Three.js", "PostgreSQL", "Stripe", "TypeScript"],
     doc: "",
   },
@@ -129,7 +149,7 @@ export const experiences = [
     role: "Software Engineering Intern",
     company: "Winssoft Technologies India Pvt. Ltd.",
     date: "May 2025 - July 2025",
-    desc: "Optimized SQL queries by implementing composite indexes and materialized views, reducing analytics dashboard load time from 8 seconds to under 2 seconds. Refactored payment microservice handling 5K+ daily transactions, adding idempotency checks and database constraints to eliminate duplicate transaction bugs.",
+    desc: "Optimized SQL queries by implementing composite indexes and materialized views, reducing analytics dashboard load time from 8 seconds to under 2 seconds. Refactored payment microservice handling 5K+ daily transactions with idempotency guarantees, preventing duplicate charge errors in concurrent request scenarios.",
     skills: ["SQL", "PostgreSQL", "Node.js", "React", "Performance"],
     doc: "",
   },
@@ -141,7 +161,7 @@ export const education = [
     img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
     school: "Arizona State University, Tempe",
     date: "Jan 2026 - May 2027",
-    grade: "In Progress",
+    grade: "3.44 GPA",
     desc: "MS in Computer Science focused on distributed systems, operating systems, and scalable product engineering.",
     degree: "Master of Science in Computer Science",
   },
@@ -151,7 +171,7 @@ export const education = [
     school: "Arizona State University, Tempe",
     date: "Aug 2021 - Dec 2025",
     grade: "3.42 GPA",
-    desc: "BS in Computer Science with software engineering concentration. Built strong foundations in data structures, algorithms, systems, and full-stack software development.",
+    desc: "BS in Computer Science with software engineering concentration. Built strong foundations in data structures, algorithms, systems, and full-stack software development. Dean's List (multiple semesters); coursework in Operating Systems, Distributed Systems, Machine Learning, and Software Design.",
     degree: "Bachelor of Science in Computer Science",
   },
 ];
@@ -163,7 +183,7 @@ export const projects = [
     title: "RiskStream",
     date: "2026",
     description:
-      "End-to-end real-time fraud detection pipeline over 500K+ transactions. Point-in-time-correct features eliminate label leakage with training/serving parity verified by automated tests. Achieves 0.96 PR-AUC on 0.17% class imbalance using XGBoost + Isolation Forest with Platt calibration, serving inference at p99 < 50ms with zero database reads on the hot path. PSI-based drift monitoring triggers automatic retraining and hot-swaps new model versions without service restart.",
+      "End-to-end real-time fraud detection pipeline over 500K+ transactions. Point-in-time-correct features eliminate label leakage with training/serving parity verified by automated tests. Engineers 23 behavioral features and achieves 0.94 PR-AUC at 0.17% class imbalance across four simulated fraud attack patterns using XGBoost + Isolation Forest with Platt calibration, serving inference at p99 < 50ms with zero database reads on the hot path. PSI-based drift monitoring triggers automatic retraining and hot-swaps new model versions without service restart.",
     image: "https://placehold.co/1400x900/0b1220/f97316?text=RiskStream",
     tags: ["Python", "XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "Docker"],
     category: "Machine Learning",
@@ -189,7 +209,7 @@ export const projects = [
     title: "Distributed Key-Value Store",
     date: "2025",
     description:
-      "Fault-tolerant distributed database implementing Raft consensus with leader election, log replication, and chaos-tested failover behavior.",
+      "Fault-tolerant distributed database implementing Raft consensus with leader election, log replication, and chaos-tested failover behavior. 5-node Raft cluster with a gRPC SET/GET/DELETE API, correct leader redirection at sub-5ms latency, and zero data loss verified through simulated leader failures.",
     image: "https://placehold.co/1400x900/0b1220/5eead4?text=Distributed+KV+Store",
     tags: ["Java", "Raft", "gRPC", "Protocol Buffers", "Distributed Systems"],
     category: "Systems",
@@ -238,12 +258,12 @@ export const projects = [
   {
     id: 6,
     order: 4,
-    title: "F1 Strategy RL Pipeline",
-    date: "2026",
+    title: "F1 Race Strategy RL",
+    date: "2026 (Ongoing)",
     description:
-      "Reproducible data pipeline assembling a lap-level feature store across 2018-2025 F1 seasons, unifying FastF1, Ergast/Jolpica, and Open-Meteo data through an 18-step cached, resumable workflow. Feeds four downstream models — tire degradation, safety-car prediction, DNF risk, and a reinforcement-learning strategy agent — with three frozen neural sub-models acting as physics components inside the RL environment.",
+      "Multi-agent PPO reinforcement learning environment built from scratch over 188K laps across 172 F1 races (2018-2025), backed by a reproducible lap-level feature store. Three physics sub-models for tire degradation, safety car prediction (0.81 AUC), and DNF risk, with a 142-dimension observation space and counterfactual reward shaping across all 20 cars per race.",
     image: "https://placehold.co/1400x900/111827/ef4444?text=F1+Strategy+RL",
-    tags: ["Python", "PyTorch", "FastF1", "pandas", "scikit-learn", "Reinforcement Learning"],
+    tags: ["Python", "PyTorch", "PPO", "FastAPI", "React", "Reinforcement Learning"],
     category: "Machine Learning",
     github: "https://github.com/rbafna1978/f1_strategy",
     liveUrl: "",
