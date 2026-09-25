@@ -2,17 +2,20 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import {
+  MotionConfig,
   motion,
   useAnimationFrame,
   useInView,
   useMotionTemplate,
   useMotionValue,
+  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
   useVelocity,
 } from "motion/react"
 import { useTheme } from "next-themes"
+import { Moon, Sun } from "lucide-react"
 import { Bio, skills, experiences, education, projects } from "@/data/constants"
 
 const RED = "var(--lab-red)"
@@ -38,8 +41,9 @@ function Scramble({ text, className }: { text: string; className?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: "-10% 0px" })
   const [s, setS] = useState(text)
+  const reduce = useReducedMotion()
   useEffect(() => {
-    if (!inView) return
+    if (!inView || reduce) return
     let i = 0
     const id = setInterval(() => {
       i++
@@ -50,8 +54,13 @@ function Scramble({ text, className }: { text: string; className?: string }) {
       }
     }, 38)
     return () => clearInterval(id)
-  }, [inView, text])
-  return <span ref={ref} className={className}>{s}</span>
+  }, [inView, text, reduce])
+  return (
+    <span ref={ref} className={className}>
+      <span aria-hidden>{s}</span>
+      <span className="sr-only">{text}</span>
+    </span>
+  )
 }
 
 /* ------------------------------------------------------------------ cursor */
@@ -98,7 +107,8 @@ function Hero() {
   const btn = "rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] transition-transform hover:scale-105"
   return (
     <section id="top" className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-28 lg:px-12">
-      <div>
+      <h1 className="sr-only">{Bio.name} — Software Engineer</h1>
+      <div aria-hidden>
         <motion.div initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.1, ease: EASE }} className="overflow-hidden">
           <Word>{first}</Word>
         </motion.div>
@@ -160,7 +170,7 @@ function Card({ p, i }: { p: (typeof sorted)[number]; i: number }) {
       >
         <motion.div className="pointer-events-none absolute inset-0" style={{ background: spot }} />
         <motion.div className="pointer-events-none absolute inset-0 bg-lab-ink" style={{ opacity: dim }} />
-        <div className="relative flex items-start justify-between text-xs uppercase tracking-[0.25em] text-lab-fg/45" style={MONO}>
+        <div className="relative flex items-start justify-between text-xs uppercase tracking-[0.25em] text-lab-fg/60" style={MONO}>
           <span>Case {String(i + 1).padStart(2, "0")} / {p.category}</span>
           <span>{p.date}</span>
         </div>
@@ -179,10 +189,10 @@ function Card({ p, i }: { p: (typeof sorted)[number]; i: number }) {
           </div>
           <div className="flex flex-wrap items-center gap-2 lg:justify-end">
             {p.tags.slice(0, 4).map((t) => (
-              <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-[11px] text-lab-fg/70" style={MONO}>{t}</span>
+              <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-xs text-lab-fg/70" style={MONO}>{t}</span>
             ))}
-            {p.github && <a href={p.github} target="_blank" rel="noreferrer" className="rounded-full px-4 py-1.5 text-xs font-medium text-lab-ink" style={{ background: m.hue }}>GitHub ↗</a>}
-            {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" className="rounded-full border px-4 py-1.5 text-xs" style={{ borderColor: m.hue, color: m.hue }}>Live ↗</a>}
+            {p.github && <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full px-5 text-xs font-medium text-lab-ink" style={{ background: m.hue }}>GitHub ↗</a>}
+            {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full border px-5 text-xs" style={{ borderColor: m.hue, color: m.hue }}>Live ↗</a>}
           </div>
         </div>
       </motion.article>
@@ -196,7 +206,7 @@ function Race({ label, value, pct, color, delay }: { label: string; value: strin
   const inView = useInView(ref, { once: true, margin: "-20%" })
   return (
     <div ref={ref}>
-      <div className="mb-2 flex justify-between text-xs uppercase tracking-widest text-lab-fg/50" style={MONO}><span>{label}</span><span style={{ color }}>{value}</span></div>
+      <div className="mb-2 flex justify-between text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}><span>{label}</span><span style={{ color }}>{value}</span></div>
       <div className="h-6 overflow-hidden rounded-full bg-lab-fg/5">
         <motion.div
           className="h-full rounded-full"
@@ -238,7 +248,7 @@ function Proof() {
       <Head n="02" title="Proof, not adjectives" />
       <div className="mt-16 grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-lab-fg/10 bg-lab-card p-8">
-          <div className="text-xs uppercase tracking-widest text-lab-fg/45" style={MONO}>Winssoft · analytics dashboard load</div>
+          <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>Winssoft · analytics dashboard load</div>
           <div className="mt-8 space-y-6">
             <Race label="Before · composite index missing" value="8.0s" pct={100} color={RED} delay={0} />
             <Race label="After · indexes + materialized views" value="2.0s" pct={25} color={LIME} delay={0} />
@@ -246,7 +256,7 @@ function Proof() {
           <p className="mt-8 text-sm text-lab-fg/60">{experiences[1].desc}</p>
         </div>
         <div className="rounded-3xl border border-lab-fg/10 bg-lab-card p-8">
-          <div className="text-xs uppercase tracking-widest text-lab-fg/45" style={MONO}>J. Miller Custom Cues · design revision cycles</div>
+          <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>J. Miller Custom Cues · design revision cycles</div>
           <div className="mt-8"><Dots /></div>
           <div className="mt-4 text-6xl" style={{ ...BEBAS, color: LIME }}>−35%</div>
           <p className="mt-4 text-sm text-lab-fg/60">{experiences[0].desc}</p>
@@ -265,7 +275,7 @@ function Ring({ pct, color, label }: { pct: number; color: string; label: string
   const R = 54
   const C = 2 * Math.PI * R
   return (
-    <svg ref={ref} viewBox="0 0 128 128" className="h-32 w-32 -rotate-90">
+    <svg ref={ref} viewBox="0 0 128 128" className="h-32 w-32 -rotate-90 overflow-visible">
       <circle cx="64" cy="64" r={R} fill="none" stroke="color-mix(in srgb, var(--lab-fg) 8%, transparent)" strokeWidth="8" />
       <motion.circle
         cx="64" cy="64" r={R} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
@@ -307,19 +317,19 @@ function Education() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-xs uppercase tracking-widest text-lab-fg/45" style={MONO}>{c.tag}</div>
+                <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>{c.tag}</div>
                 <h3 className="mt-3 max-w-xs text-3xl leading-none text-lab-fg sm:text-4xl" style={BEBAS}>{c.e.degree}</h3>
-                <div className="mt-2 text-sm text-lab-fg/55">{c.e.school}</div>
+                <div className="mt-2 text-sm text-lab-fg/60">{c.e.school}</div>
               </div>
               <Ring pct={c.pct} color={c.color} label={c.label} />
             </div>
             <div className="mt-8 flex items-end gap-4">
               <div className="leading-[0.8]" style={{ ...BEBAS, fontSize: "clamp(5rem, 11vw, 9rem)", color: c.color }}><Scramble text={c.gpa} /></div>
-              <div className="pb-2 text-xs uppercase tracking-widest text-lab-fg/45" style={MONO}>GPA<br />{c.extra}</div>
+              <div className="pb-2 text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>GPA<br />{c.extra}</div>
             </div>
             {i === 0 && (
               <div className="mt-6 flex flex-wrap gap-2">
-                {COURSES.map((t) => <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-[11px] text-lab-fg/70" style={MONO}>{t}</span>)}
+                {COURSES.map((t) => <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-xs text-lab-fg/70" style={MONO}>{t}</span>)}
               </div>
             )}
           </motion.div>
@@ -340,7 +350,11 @@ function Row({ items, dir, outline }: { items: string[]; dir: 1 | -1; outline?: 
   const skew = useTransform(vel, [-2000, 2000], [-12, 12])
   const x = useTransform(base, (v) => `${wrapN(-25, 0, v)}%`)
   const d = useRef<1 | -1>(dir)
+  const host = useRef<HTMLDivElement>(null)
+  const visible = useInView(host)
+  const reduce = useReducedMotion()
   useAnimationFrame((_, delta) => {
+    if (!visible || reduce) return
     let move = dir * 2.2 * (delta / 1000)
     if (vf.get() < 0) d.current = -1
     else if (vf.get() > 0) d.current = 1
@@ -349,8 +363,8 @@ function Row({ items, dir, outline }: { items: string[]; dir: 1 | -1; outline?: 
   })
   const line = items.join("  ✦  ") + "  ✦  "
   return (
-    <div className="overflow-hidden whitespace-nowrap">
-      <motion.div style={{ x, skewX: skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "var(--lab-fg)" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
+    <div ref={host} aria-hidden className="overflow-hidden whitespace-nowrap">
+      <motion.div style={{ x, skewX: reduce ? 0 : skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "var(--lab-fg)" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
         {[0, 1, 2, 3].map((k) => <span key={k}>{line}</span>)}
       </motion.div>
     </div>
@@ -367,7 +381,7 @@ function Stack() {
         <Row items={a} dir={-1} />
         <Row items={b} dir={1} outline />
       </div>
-      <p className="mt-8 px-6 text-xs uppercase tracking-widest text-lab-fg/35 lg:px-12" style={MONO}>scroll fast. it reacts.</p>
+      <ul className="sr-only">{[...new Set([...a, ...b])].map((n) => <li key={n}>{n}</li>)}</ul>
     </section>
   )
 }
@@ -406,9 +420,9 @@ function Contact() {
         </h2>
         <Magnetic href={`mailto:${Bio.email}`}>Say<br />hello ↗</Magnetic>
       </div>
-      <div className="mt-24 flex flex-wrap gap-x-8 gap-y-2 text-sm text-lab-fg/50" style={MONO}>
+      <div className="mt-24 flex flex-wrap gap-x-8 gap-y-2 text-sm text-lab-fg/60" style={MONO}>
         {[["GitHub", Bio.github], ["LinkedIn", Bio.linkedin], ["Resume", Bio.resume]].map(([l, h]) => (
-          <a key={l} href={h} target="_blank" rel="noreferrer" className="uppercase tracking-widest transition-colors hover:text-lab-fg">{l} ↗</a>
+          <a key={l} href={h} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center uppercase tracking-widest transition-colors hover:text-lab-fg">{l} ↗</a>
         ))}
         <span className="ml-auto">© {new Date().getFullYear()} Rishit Bafna</span>
       </div>
@@ -426,16 +440,16 @@ function Head({ n, title }: { n: string; title: string }) {
 }
 
 /* ----------------------------------------------------------------- sidebar */
-function Sidebar() {
+// one calculation drives both the highlighted item and the progress line, so they can never disagree
+function useSectionSpy() {
   const [active, setActive] = useState("top")
-  const [time, setTime] = useState("")
   const pos = useMotionValue(0)
-  const fill = useSpring(pos, { stiffness: 140, damping: 26 })
-
-  // one calculation drives both the highlighted item and the line, so they can never disagree
   useEffect(() => {
+    let raf = 0
     const update = () => {
+      raf = 0
       const els = SECTIONS.map((s) => document.getElementById(s.id)).filter(Boolean) as HTMLElement[]
+      if (!els.length) return
       const y = window.scrollY + window.innerHeight * 0.4
       const tops = els.map((e) => e.getBoundingClientRect().top + window.scrollY)
       let i = 0
@@ -446,14 +460,39 @@ function Sidebar() {
       // item i's dot sits at (i + 0.5) / n along the line
       pos.set(Math.min(1, (i + t + 0.5) / els.length))
     }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
     update()
-    window.addEventListener("scroll", update, { passive: true })
-    window.addEventListener("resize", update)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll)
     return () => {
-      window.removeEventListener("scroll", update)
-      window.removeEventListener("resize", update)
+      cancelAnimationFrame(raf)
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
     }
   }, [pos])
+  return { active, pos }
+}
+
+function MobileNav() {
+  const { active } = useSectionSpy()
+  return (
+    <nav aria-label="Sections" className="fixed inset-x-0 top-0 z-50 flex items-center gap-3 border-b border-lab-fg/10 bg-lab-ink/85 py-2 pl-4 pr-20 backdrop-blur-md lg:hidden" style={MONO}>
+      <span className="text-2xl leading-none text-lab-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></span>
+      <div className="flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none]">
+        {SECTIONS.map((s) => (
+          <a key={s.id} href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className="inline-flex min-h-11 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.15em]" style={{ color: active === s.id ? "var(--lab-ink)" : "color-mix(in srgb, var(--lab-fg) 65%, transparent)", background: active === s.id ? LIME : undefined }}>
+            {s.label}
+          </a>
+        ))}
+      </div>
+    </nav>
+  )
+}
+
+function Sidebar() {
+  const { active, pos } = useSectionSpy()
+  const [time, setTime] = useState("")
+  const fill = useSpring(pos, { stiffness: 140, damping: 26 })
 
   useEffect(() => {
     const tick = () => setTime(new Date().toLocaleTimeString("en-US", { timeZone: "America/Phoenix", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }))
@@ -466,14 +505,14 @@ function Sidebar() {
     <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-lab-fg/10 bg-lab-ink/80 p-8 backdrop-blur-xl lg:flex" style={MONO}>
       <div>
         <div className="text-3xl leading-none text-lab-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></div>
-        <div className="mt-2 text-[10px] uppercase tracking-[0.25em] text-lab-fg/40">Software Engineer</div>
+        <div className="mt-2 text-xs uppercase tracking-[0.25em] text-lab-fg/60">Software Engineer</div>
       </div>
 
-      <nav className="relative pl-6">
+      <nav aria-label="Sections" className="relative pl-6">
         <div className="absolute bottom-0 left-0 top-0 w-px bg-lab-fg/10" />
         <motion.div className="absolute left-0 top-0 h-full w-px origin-top" style={{ scaleY: fill, background: LIME, boxShadow: `0 0 10px ${LIME}` }} />
         {SECTIONS.map((s, i) => (
-          <a key={s.id} href={`#${s.id}`} data-hover className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "var(--lab-fg)" : "color-mix(in srgb, var(--lab-fg) 33%, transparent)" }}>
+          <a key={s.id} href={`#${s.id}`} data-hover aria-current={active === s.id ? "true" : undefined} className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "var(--lab-fg)" : "color-mix(in srgb, var(--lab-fg) 62%, transparent)" }}>
             <span style={{ color: active === s.id ? LIME : undefined }}>{String(i).padStart(2, "0")}</span>
             <span className="transition-transform group-hover:translate-x-1">{s.label}</span>
             {active === s.id && <motion.span layoutId="dot" className="ml-auto h-1.5 w-1.5 rounded-full" style={{ background: LIME }} />}
@@ -481,7 +520,7 @@ function Sidebar() {
         ))}
       </nav>
 
-      <div className="space-y-1 text-[10px] uppercase tracking-[0.2em] text-lab-fg/40">
+      <div className="space-y-1 text-xs uppercase tracking-[0.2em] text-lab-fg/60">
         <div>Tempe, AZ · <span className="text-lab-fg/70">{time || "--:--:--"}</span></div>
         <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: LIME }} />Open to opportunities</div>
         <a href={Bio.resume} target="_blank" rel="noreferrer" data-hover className="mt-3 inline-block border-b border-lab-fg/30 pb-0.5 text-lab-fg/80 hover:text-lab-fg">Resume ↗</a>
@@ -503,7 +542,7 @@ function ThemeToggle() {
       data-hover
       className="fixed right-5 top-5 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-lab-fg/20 bg-lab-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
     >
-      {dark ? "☀" : "☾"}
+      {dark ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />}
     </button>
   )
 }
@@ -511,16 +550,19 @@ function ThemeToggle() {
 /* -------------------------------------------------------------------- page */
 export default function Lab() {
   return (
+    <MotionConfig reducedMotion="user">
     <div className="lab relative min-h-screen text-lab-fg" style={{ background: INK }}>
       {/* hide the main site's header on this experimental route */}
-      <style>{`header{display:none!important}html{scroll-behavior:smooth}`}</style>
+      <style>{`header{display:none!important}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}.lab a:focus-visible,.lab button:focus-visible{outline:2px solid var(--lab-lime);outline-offset:3px}section[id]{scroll-margin-top:3.5rem}`}</style>
       <Cursor />
+      <a href="#work" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded focus:bg-lab-fg focus:px-4 focus:py-2 focus:text-lab-ink">Skip to work</a>
       <Sidebar />
+      <MobileNav />
       <ThemeToggle />
       {/* grain */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-[150] opacity-[0.07] mix-blend-overlay"
+        className="pointer-events-none fixed inset-0 z-[150] opacity-[0.05]"
         style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")" }}
       />
       <main className="lg:pl-64">
@@ -537,5 +579,6 @@ export default function Lab() {
         <Contact />
       </main>
     </div>
+    </MotionConfig>
   )
 }
