@@ -13,7 +13,7 @@ import {
   useTransform,
   useVelocity,
 } from "motion/react"
-import { Bio, skills, experiences, projects } from "@/data/constants"
+import { Bio, skills, experiences, education, projects } from "@/data/constants"
 
 const RED = "#ff3d2e"
 const LIME = "#b6ff5c"
@@ -26,6 +26,7 @@ const SECTIONS = [
   { id: "top", label: "Signal" },
   { id: "work", label: "Work" },
   { id: "proof", label: "Proof" },
+  { id: "education", label: "Education" },
   { id: "stack", label: "Stack" },
   { id: "contact", label: "Contact" },
 ]
@@ -335,6 +336,79 @@ function Proof() {
   )
 }
 
+/* --------------------------------------------------------------- education */
+const COURSES = ["Operating Systems", "Distributed Systems", "Machine Learning", "Data Structures & Algorithms", "Software Design"]
+
+function Ring({ pct, color, label }: { pct: number; color: string; label: string }) {
+  const ref = useRef<SVGSVGElement>(null)
+  const inView = useInView(ref, { once: true, margin: "-20%" })
+  const R = 54
+  const C = 2 * Math.PI * R
+  return (
+    <svg ref={ref} viewBox="0 0 128 128" className="h-32 w-32 -rotate-90">
+      <circle cx="64" cy="64" r={R} fill="none" stroke="#ffffff12" strokeWidth="8" />
+      <motion.circle
+        cx="64" cy="64" r={R} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
+        strokeDasharray={C}
+        initial={{ strokeDashoffset: C }}
+        animate={inView ? { strokeDashoffset: C * (1 - pct) } : {}}
+        transition={{ duration: 1.8, ease: EASE }}
+        style={{ filter: `drop-shadow(0 0 6px ${color})` }}
+      />
+      <text x="64" y="64" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-white text-[15px]" style={{ ...MONO, transformOrigin: "64px 64px" }}>{label}</text>
+    </svg>
+  )
+}
+
+function Education() {
+  // MS runs Jan 2026 – May 2027; progress is computed client-side so it stays current
+  const [ms, setMs] = useState(0.5)
+  useEffect(() => {
+    const a = new Date("2026-01-12").getTime()
+    const b = new Date("2027-05-15").getTime()
+    setMs(Math.min(1, Math.max(0, (Date.now() - a) / (b - a))))
+  }, [])
+  const cards = [
+    { e: education[1], pct: 1, label: "DONE", color: LIME, gpa: "3.42", tag: "Earned Dec 2025", extra: "Dean's List · multiple semesters" },
+    { e: education[0], pct: ms, label: `${Math.round(ms * 100)}%`, color: RED, gpa: "3.44", tag: "In progress · May 2027", extra: "Graduate coursework underway" },
+  ]
+  return (
+    <section id="education" className="px-6 py-32 lg:px-12">
+      <Head n="03" title="Education" />
+      <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        {cards.map((c, i) => (
+          <motion.div
+            key={c.e.id}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, delay: i * 0.15, ease: EASE }}
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0d0d11] p-8"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="text-xs uppercase tracking-widest text-white/45" style={MONO}>{c.tag}</div>
+                <h3 className="mt-3 max-w-xs text-3xl leading-none text-white sm:text-4xl" style={BEBAS}>{c.e.degree}</h3>
+                <div className="mt-2 text-sm text-white/55">{c.e.school}</div>
+              </div>
+              <Ring pct={c.pct} color={c.color} label={c.label} />
+            </div>
+            <div className="mt-8 flex items-end gap-4">
+              <div className="leading-[0.8]" style={{ ...BEBAS, fontSize: "clamp(5rem, 11vw, 9rem)", color: c.color }}><Scramble text={c.gpa} /></div>
+              <div className="pb-2 text-xs uppercase tracking-widest text-white/45" style={MONO}>GPA<br />{c.extra}</div>
+            </div>
+            {i === 0 && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                {COURSES.map((t) => <span key={t} className="rounded-full border border-white/15 px-3 py-1 text-[11px] text-white/70" style={MONO}>{t}</span>)}
+              </div>
+            )}
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 /* ------------------------------------------------------------------- stack */
 const wrapN = (min: number, max: number, v: number) => ((((v - min) % (max - min)) + (max - min)) % (max - min)) + min
 
@@ -368,7 +442,7 @@ function Stack() {
   const b = ["XGBoost", "PyTorch", "PPO", "Qdrant", "MLflow", "gRPC", "Raft", "FastAPI", "Redis", "Docker"]
   return (
     <section id="stack" className="overflow-hidden py-32">
-      <div className="px-6 lg:px-12"><Head n="03" title="Stack" /></div>
+      <div className="px-6 lg:px-12"><Head n="04" title="Stack" /></div>
       <div className="mt-16 space-y-4">
         <Row items={a} dir={-1} />
         <Row items={b} dir={1} outline />
@@ -405,7 +479,7 @@ function Magnetic({ children, href }: { children: ReactNode; href: string }) {
 function Contact() {
   return (
     <section id="contact" className="px-6 pb-16 pt-32 lg:px-12">
-      <Head n="04" title="Contact" />
+      <Head n="05" title="Contact" />
       <div className="mt-16 flex flex-col items-start justify-between gap-12 lg:flex-row lg:items-center">
         <h2 className="max-w-4xl leading-[0.85] text-white" style={{ ...BEBAS, fontSize: "clamp(3.5rem, 11vw, 10rem)" }}>
           Let&apos;s build something that <span style={{ color: RED }}>doesn&apos;t fall over.</span>
@@ -508,6 +582,7 @@ export default function Lab() {
           </div>
         </section>
         <Proof />
+        <Education />
         <Stack />
         <Contact />
       </main>
