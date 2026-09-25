@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import {
-  animate,
   motion,
   useAnimationFrame,
   useInView,
@@ -83,89 +82,23 @@ function Cursor() {
 }
 
 /* -------------------------------------------------------------------- hero */
-const ANNOTATIONS = [
-  { k: "I build", t: "databases that keep working when servers crash", x: "6%", y: "12%" },
-  { k: "I built", t: "a fraud detector that decides in under 50 milliseconds", x: "46%", y: "10%" },
-  { k: "I trained", t: "an AI to plan F1 pit stops across 172 real races", x: "50%", y: "40%" },
-  { k: "I made", t: "a slow dashboard load 4× faster (8s → 2s)", x: "5%", y: "46%" },
-  { k: "I created", t: "a search engine for cybersecurity threats", x: "30%", y: "66%" },
-  { k: "I shipped", t: "a 3D product designer that cut revisions by 35%", x: "52%", y: "72%" },
-  { k: "I fixed", t: "a payments service so no one is ever charged twice", x: "6%", y: "84%" },
-]
-
-function Word({ children, stroke }: { children: string; stroke?: boolean }) {
+function Word({ children }: { children: string }) {
   return (
     <div
       className="select-none whitespace-nowrap leading-[0.8] tracking-tighter text-[clamp(6rem,34vw,22rem)] lg:text-[clamp(8rem,27vw,30rem)]"
-      style={{
-        ...BEBAS,
-        color: stroke ? "transparent" : undefined,
-        WebkitTextStroke: stroke ? `2px ${LIME}` : undefined,
-      }}
+      style={BEBAS}
     >
       {children}
     </div>
   )
 }
 
-function Chrome() {
-  return (
-    <div className="mt-10 flex flex-wrap items-end justify-between gap-4 text-xs uppercase tracking-[0.25em] text-lab-fg/50" style={MONO}>
-      <span>{Bio.roles.slice(0, 3).join(" / ")}</span>
-      <span className="animate-pulse" style={{ color: LIME }}>◉ move your cursor to see what I actually build</span>
-    </div>
-  )
-}
-
 function Hero() {
-  const ref = useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const r = useMotionValue(0)
-  const sx = useSpring(x, { stiffness: 300, damping: 35 })
-  const sy = useSpring(y, { stiffness: 300, damping: 35 })
-  const sr = useSpring(r, { stiffness: 200, damping: 25 })
-  const mask = useMotionTemplate`radial-gradient(circle ${sr}px at ${sx}px ${sy}px, #000 62%, transparent 100%)`
-  const moved = useRef(false)
   const [first, last] = [Bio.name.split(" ")[0], Bio.name.split(" ").slice(1).join(" ")]
-
-  // auto-sweep so people learn the trick before they touch anything
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const w = el.clientWidth
-    x.set(w * 0.2)
-    y.set(el.clientHeight * 0.45)
-    const a = animate(x, [w * 0.2, w * 0.75], { duration: 2.6, delay: 1, ease: "easeInOut" })
-    const b = animate(r, [0, 260, 260, 0], { duration: 2.6, delay: 1, times: [0, 0.2, 0.8, 1] })
-    return () => {
-      a.stop()
-      b.stop()
-    }
-  }, [x, y, r])
-
-  const onMove = (e: React.PointerEvent) => {
-    const b = ref.current!.getBoundingClientRect()
-    if (!moved.current) {
-      moved.current = true
-      x.stop()
-      r.stop()
-    }
-    x.set(e.clientX - b.left)
-    y.set(e.clientY - b.top)
-    r.set(260)
-  }
-
+  const btn = "rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] transition-transform hover:scale-105"
   return (
-    <section
-      id="top"
-      ref={ref}
-      onPointerMove={onMove}
-      onPointerLeave={() => r.set(0)}
-      className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-28 lg:px-12"
-    >
-      {/* base layer */}
-      <div className="relative z-0">
+    <section id="top" className="relative flex min-h-screen flex-col justify-end overflow-hidden px-6 pb-16 pt-28 lg:px-12">
+      <div>
         <motion.div initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.1, ease: EASE }} className="overflow-hidden">
           <Word>{first}</Word>
         </motion.div>
@@ -173,39 +106,20 @@ function Hero() {
           <Word>{last}</Word>
         </motion.div>
       </div>
-
-      {/* x-ray layer */}
       <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-10"
-        style={{ WebkitMaskImage: mask, maskImage: mask, background: INK }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
+        className="mt-10 flex flex-wrap items-end justify-between gap-6"
       >
-        <div
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `linear-gradient(${mix(LIME, 13)} 1px,transparent 1px),linear-gradient(90deg,${mix(LIME, 13)} 1px,transparent 1px)`,
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="absolute inset-0 flex flex-col justify-end px-6 pb-16 pt-28 lg:px-12">
-          <div>
-            <Word stroke>{first}</Word>
-            <Word stroke>{last}</Word>
-          </div>
-          <div className="invisible"><Chrome /></div>
+        <p className="max-w-xl text-lg text-lab-fg/70 sm:text-xl">
+          Software engineer building distributed systems and ML infrastructure. M.S. Computer Science at Arizona State University.
+        </p>
+        <div className="flex flex-wrap gap-3" style={MONO}>
+          <a href="#work" className={`${btn} text-lab-ink`} style={{ background: LIME }}>See my work ↓</a>
+          <a href={Bio.resume} target="_blank" rel="noreferrer" className={`${btn} border border-lab-fg/25`}>Resume ↗</a>
         </div>
-        {ANNOTATIONS.map((a) => (
-          <div key={a.t} className="absolute max-w-[15rem] text-xs sm:max-w-xs sm:text-sm" style={{ left: a.x, top: a.y, ...MONO }}>
-            <div className="text-[10px] uppercase tracking-[0.25em]" style={{ color: LIME }}>
-              <span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: LIME, boxShadow: `0 0 12px ${LIME}` }} />
-              {a.k}
-            </div>
-            <div className="mt-1 text-lab-fg">{a.t}</div>
-          </div>
-        ))}
       </motion.div>
-
-      <div className="relative z-20"><Chrome /></div>
     </section>
   )
 }
