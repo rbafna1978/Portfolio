@@ -96,7 +96,7 @@ function Cursor() {
 function Word({ children }: { children: string }) {
   return (
     <div
-      className="select-none whitespace-nowrap leading-[0.8] tracking-tighter text-[clamp(6rem,66vw,22rem)] lg:text-[clamp(8rem,27vw,30rem)]"
+      className="select-none whitespace-nowrap leading-[0.8] tracking-tighter text-[min(calc((100vw_-_3rem)/1.85),22rem)] lg:text-[clamp(8rem,27vw,30rem)]"
       style={BEBAS}
     >
       {children}
@@ -108,8 +108,12 @@ function Hero() {
   const [first, last] = [Bio.name.split(" ")[0], Bio.name.split(" ").slice(1).join(" ")]
   const btn = "rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] transition-transform hover:scale-105"
   return (
-    <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden px-6 pb-12 pt-24 lg:min-h-screen lg:px-12 lg:pb-16 lg:pt-28">
+    <section id="top" className="relative flex min-h-svh flex-col justify-between overflow-hidden px-6 pb-12 pt-24 lg:min-h-screen lg:justify-end lg:px-12 lg:pb-16 lg:pt-28">
       <h1 className="sr-only">{Bio.name} — Software Engineer</h1>
+      <div className="flex items-center gap-3 pt-2 text-xs uppercase tracking-[0.12em] text-fg/60 lg:hidden" style={MONO}>
+        <span className="h-2 w-2 shrink-0 animate-pulse rounded-full" style={{ background: LIME }} />
+        Open to opportunities · Tempe, AZ
+      </div>
       <div aria-hidden>
         <motion.div initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.1, ease: EASE }} className="overflow-hidden">
           <Word>{first}</Word>
