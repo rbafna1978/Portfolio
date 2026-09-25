@@ -21,111 +21,35 @@ export const skills = [
   {
     title: "Languages",
     skills: [
-      {
-        name: "Java",
-        imageLight: "https://skillicons.dev/icons?i=java",
-        imageDark: "https://skillicons.dev/icons?i=java",
-      },
-      {
-        name: "Python",
-        imageLight: "https://skillicons.dev/icons?i=py",
-        imageDark: "https://skillicons.dev/icons?i=py",
-      },
-      {
-        name: "JavaScript",
-        imageLight: "https://skillicons.dev/icons?i=js",
-        imageDark: "https://skillicons.dev/icons?i=js",
-      },
-      {
-        name: "TypeScript",
-        imageLight: "https://skillicons.dev/icons?i=ts",
-        imageDark: "https://skillicons.dev/icons?i=ts",
-      },
-      {
-        name: "C++",
-        imageLight: "https://skillicons.dev/icons?i=cpp",
-        imageDark: "https://skillicons.dev/icons?i=cpp",
-      },
-      {
-        name: "SQL",
-        imageLight: "https://skillicons.dev/icons?i=postgres",
-        imageDark: "https://skillicons.dev/icons?i=postgres",
-      },
+      { name: "Java" },
+      { name: "Python" },
+      { name: "JavaScript" },
+      { name: "TypeScript" },
+      { name: "C++" },
+      { name: "SQL" },
     ],
   },
   {
     title: "Frameworks",
     skills: [
-      {
-        name: "React",
-        imageLight: "https://skillicons.dev/icons?i=react",
-        imageDark: "https://skillicons.dev/icons?i=react",
-      },
-      {
-        name: "Next.js",
-        imageLight: "https://skillicons.dev/icons?i=nextjs",
-        imageDark: "https://skillicons.dev/icons?i=nextjs",
-      },
-      {
-        name: "Node.js",
-        imageLight: "https://skillicons.dev/icons?i=nodejs",
-        imageDark: "https://skillicons.dev/icons?i=nodejs",
-      },
-      {
-        name: "Express",
-        imageLight: "https://skillicons.dev/icons?i=express",
-        imageDark: "https://skillicons.dev/icons?i=express",
-      },
-      {
-        name: "FastAPI",
-        imageLight: "https://skillicons.dev/icons?i=fastapi",
-        imageDark: "https://skillicons.dev/icons?i=fastapi",
-      },
-      {
-        name: "Tailwind CSS",
-        imageLight: "https://skillicons.dev/icons?i=tailwind",
-        imageDark: "https://skillicons.dev/icons?i=tailwind",
-      },
-      {
-        name: "Three.js",
-        imageLight: "https://skillicons.dev/icons?i=threejs",
-        imageDark: "https://skillicons.dev/icons?i=threejs",
-      },
+      { name: "React" },
+      { name: "Next.js" },
+      { name: "Node.js" },
+      { name: "Express" },
+      { name: "FastAPI" },
+      { name: "Tailwind CSS" },
+      { name: "Three.js" },
     ],
   },
   {
     title: "Tools & Infra",
     skills: [
-      {
-        name: "PostgreSQL",
-        imageLight: "https://skillicons.dev/icons?i=postgres",
-        imageDark: "https://skillicons.dev/icons?i=postgres",
-      },
-      {
-        name: "MongoDB",
-        imageLight: "https://skillicons.dev/icons?i=mongodb",
-        imageDark: "https://skillicons.dev/icons?i=mongodb",
-      },
-      {
-        name: "Docker",
-        imageLight: "https://skillicons.dev/icons?i=docker",
-        imageDark: "https://skillicons.dev/icons?i=docker",
-      },
-      {
-        name: "AWS",
-        imageLight: "https://skillicons.dev/icons?i=aws",
-        imageDark: "https://skillicons.dev/icons?i=aws",
-      },
-      {
-        name: "Git",
-        imageLight: "https://skillicons.dev/icons?i=git",
-        imageDark: "https://skillicons.dev/icons?i=git",
-      },
-      {
-        name: "Redis",
-        imageLight: "https://skillicons.dev/icons?i=redis",
-        imageDark: "https://skillicons.dev/icons?i=redis",
-      },
+      { name: "PostgreSQL" },
+      { name: "MongoDB" },
+      { name: "Docker" },
+      { name: "AWS" },
+      { name: "Git" },
+      { name: "Redis" },
     ],
   },
 ];
@@ -133,32 +57,25 @@ export const skills = [
 export const experiences = [
   {
     id: 0,
-    img: "https://placehold.co/240x120/111827/ffffff?text=JMC",
-    logoWide: true,
     role: "Software Engineering Intern",
     company: "J. Miller Custom Cues",
     date: "Aug 2025 - Dec 2025",
     desc: "Shipped a production 3D product configurator using Three.js and React, reducing customer design revision cycles by 35%. Built a PostgreSQL REST API with Stripe integration processing 100+ orders with transactional cart management and sub-200ms response times.",
     skills: ["React", "Three.js", "PostgreSQL", "Stripe", "TypeScript"],
-    doc: "",
   },
   {
     id: 1,
-    img: "https://placehold.co/240x120/0f172a/ffffff?text=WINSOFT",
-    logoWide: true,
     role: "Software Engineering Intern",
     company: "Winssoft Technologies India Pvt. Ltd.",
     date: "May 2025 - July 2025",
     desc: "Optimized SQL queries by implementing composite indexes and materialized views, reducing analytics dashboard load time from 8 seconds to under 2 seconds. Refactored payment microservice handling 5K+ daily transactions with idempotency guarantees, preventing duplicate charge errors in concurrent request scenarios.",
     skills: ["SQL", "PostgreSQL", "Node.js", "React", "Performance"],
-    doc: "",
   },
 ];
 
 export const education = [
   {
     id: 0,
-    img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
     school: "Arizona State University, Tempe",
     date: "Jan 2026 - May 2027",
     grade: "3.44 GPA",
@@ -167,7 +84,6 @@ export const education = [
   },
   {
     id: 1,
-    img: "https://placehold.co/120x120/8b1f24/ffffff?text=ASU",
     school: "Arizona State University, Tempe",
     date: "Aug 2021 - Dec 2025",
     grade: "3.42 GPA",
@@ -184,7 +100,6 @@ export const projects = [
     date: "2026",
     description:
       "End-to-end real-time fraud detection pipeline over 500K+ transactions. Point-in-time-correct features eliminate label leakage with training/serving parity verified by automated tests. Engineers 23 behavioral features and achieves 0.94 PR-AUC at 0.17% class imbalance across four simulated fraud attack patterns using XGBoost + Isolation Forest with Platt calibration, serving inference at p99 < 50ms with zero database reads on the hot path. PSI-based drift monitoring triggers automatic retraining and hot-swaps new model versions without service restart.",
-    image: "https://placehold.co/1400x900/0b1220/f97316?text=RiskStream",
     tags: ["Python", "XGBoost", "FastAPI", "PostgreSQL", "Redis", "MLflow", "Docker"],
     category: "Machine Learning",
     github: "https://github.com/rbafna1978/riskstream",
@@ -197,7 +112,6 @@ export const projects = [
     date: "2026",
     description:
       "Hybrid retrieval pipeline over 100K+ CVE/CWE/CAPEC records combining dense vector search, BM25 sparse retrieval, and Reciprocal Rank Fusion. Cross-encoder reranking (Qwen3-Reranker-8B) disambiguates semantically similar threat queries to reduce false retrievals on ambiguous CVE lookups. Delivers 400ms end-to-end query latency for real-time cybersecurity threat intelligence across a 6-feed ingestion pipeline.",
-    image: "https://placehold.co/1400x900/020617/a78bfa?text=CyberSentient+RAG",
     tags: ["Python", "Qwen3-Embedding-8B", "Qdrant", "BM25", "FastAPI", "RAG"],
     category: "Machine Learning",
     github: "https://github.com/rbafna1978/cybersentient-rag",
@@ -210,7 +124,6 @@ export const projects = [
     date: "2025",
     description:
       "Fault-tolerant distributed database implementing Raft consensus with leader election, log replication, and chaos-tested failover behavior. 5-node Raft cluster with a gRPC SET/GET/DELETE API, correct leader redirection at sub-5ms latency, and zero data loss verified through simulated leader failures.",
-    image: "https://placehold.co/1400x900/0b1220/5eead4?text=Distributed+KV+Store",
     tags: ["Java", "Raft", "gRPC", "Protocol Buffers", "Distributed Systems"],
     category: "Systems",
     github: "https://github.com/rbafna1978/distributed-kv-store",
@@ -223,7 +136,6 @@ export const projects = [
     date: "2024",
     description:
       "High-performance web server built from scratch in C++ using socket programming and a custom thread pool to handle concurrent client connections efficiently.",
-    image: "https://placehold.co/1400x900/1e293b/f8fafc?text=HTTP+Server",
     tags: ["C++", "Socket Programming", "Multithreading", "Systems"],
     category: "Systems",
     github: "https://github.com/rbafna1978/http-server",
@@ -236,7 +148,6 @@ export const projects = [
     date: "2025",
     description:
       "Analyzes repositories into interactive dependency graphs with vulnerability checks and circular dependency detection for large codebases.",
-    image: "https://placehold.co/1400x900/111827/22d3ee?text=Dependency+Visualizer",
     tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Cytoscape"],
     category: "Web App",
     github: "https://github.com/rbafna1978/github-dependency-visualizer",
@@ -249,7 +160,6 @@ export const projects = [
     date: "2026",
     description:
       "Interview practice platform using browser-native Web Speech API for live transcription, scoring answers on STAR structure, clarity, filler words, and pacing in real time. Supports behavioral, technical, and freestyle modes with session history to track improvement.",
-    image: "https://placehold.co/1400x900/020617/38bdf8?text=Interview+Helper",
     tags: ["React", "Web Speech API", "Node.js", "PostgreSQL"],
     category: "Web App",
     github: "https://github.com/rbafna1978/Interview_Helper",
@@ -262,7 +172,6 @@ export const projects = [
     date: "2026 (Ongoing)",
     description:
       "Multi-agent PPO reinforcement learning environment built from scratch over 188K laps across 172 F1 races (2018-2025), backed by a reproducible lap-level feature store. Three physics sub-models for tire degradation, safety car prediction (0.81 AUC), and DNF risk, with a 142-dimension observation space and counterfactual reward shaping across all 20 cars per race.",
-    image: "https://placehold.co/1400x900/111827/ef4444?text=F1+Strategy+RL",
     tags: ["Python", "PyTorch", "PPO", "FastAPI", "React", "Reinforcement Learning"],
     category: "Machine Learning",
     github: "https://github.com/rbafna1978/f1_strategy",
@@ -275,7 +184,6 @@ export const projects = [
     date: "2026",
     description:
       "Terminal-based system monitor for macOS that translates raw performance metrics into plain-English explanations instead of dumping numbers. Focuses on macOS-specific signals like memory pressure and purgeable storage that traditional tools surface poorly, distributed via Homebrew, pip, and curl install.",
-    image: "https://placehold.co/1400x900/0f172a/34d399?text=easymon",
     tags: ["Python", "macOS", "CLI", "Homebrew"],
     category: "Systems",
     github: "https://github.com/rbafna1978/easymon",

@@ -1,42 +1,55 @@
-# Rishit Bafna's Portfolio
+# Rishit Bafna — Portfolio
 
-A high-performance, tactical-themed portfolio built with Next.js, Tailwind CSS, and Framer Motion.
+Personal portfolio built with Next.js 15 (App Router), React 19, Tailwind CSS 4 and Motion.
+Live at [rishitbafna.vercel.app](https://rishitbafna.vercel.app).
 
-## Features
+## Sections
 
-- **Tactical UI**: A unique "mission-ready" aesthetic with scanlines, grid patterns, and monospaced typography.
-- **Dynamic Content**: Fully responsive layout with smooth transitions and interactive elements.
-- **Sectioned Layout**:
-  - **Hero**: Split-flap display and typewriter effects.
-  - **Skills**: Infinite marquee of technical proficiencies.
-  - **Education**: Timeline-based academic history.
-  - **Experience**: "Mission cards" detailing professional deployments and impact metrics.
-  - **Projects**: Featured projects with category filtering.
+A single page with a sticky sidebar (top bar on mobile) that tracks your scroll position:
 
-## Tech Stack
+- **Signal** — oversized name, one-line intro, resume link
+- **Work** — projects as case cards that stack as you scroll, each led by its headline metric
+- **Proof** — animated before/after for two internship results
+- **Education** — degrees with progress rings and GPA
+- **Stack** — scroll-reactive skill marquees
+- **Contact** — email, GitHub, LinkedIn, resume
 
-- **Framework**: Next.js 15 (App Router)
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
-- **Icons**: Lucide React, Tabler Icons
-- **Components**: Radix UI, MagicUI
+Light and dark themes (toggle top-right, shared with `next-themes`), keyboard focus styles, a skip link,
+and `prefers-reduced-motion` support are built in.
 
-## Getting Started
+## Editing content
 
-First, install the dependencies:
+All content lives in [`data/constants.js`](data/constants.js): `Bio`, `skills`, `experiences`,
+`education` and `projects`. Project order is controlled by each project's `order` field.
+
+Two things live in [`app/portfolio.tsx`](app/portfolio.tsx) instead of the data file:
+
+- `META` — the headline metric and accent color shown on each project card (keyed by project `id`)
+- `COURSES` and the Master's start/end dates in `Education`
+
+To update the resume, replace [`public/resume.pdf`](public/resume.pdf).
+
+## Development
 
 ```bash
 npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+npm run lint
 ```
 
-Then, run the development server:
+## Structure
 
-```bash
-npm run dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+app/
+  layout.tsx      fonts, metadata, ThemeProvider
+  page.tsx        renders <Portfolio />
+  portfolio.tsx   all sections and interactions
+  globals.css     light/dark palette tokens and base styles
+data/constants.js all site content
+public/           resume.pdf, og-image.png
+```
 
 ## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pushing to `main` deploys to Vercel automatically.

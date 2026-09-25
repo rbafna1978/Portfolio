@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Bebas_Neue, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
-import Header from "./components/header";
 import { ThemeProvider } from "next-themes";
 
 const bebasNeue = Bebas_Neue({
@@ -26,16 +25,17 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rishitbafna.vercel.app"),
   title: "Rishit Bafna | Portfolio",
   description: "Rishit Bafna - software engineer focused on reliable systems and polished web products.",
   openGraph: {
     title: "Rishit Bafna | Portfolio",
     description: "Software engineer focused on reliable systems and polished web products.",
-    url: "https://rishitbafna.vercel.app/", // Replace with your actual URL
+    url: "https://rishitbafna.vercel.app/",
     siteName: "Rishit Bafna Portfolio",
     images: [
       {
-        url: "/og-image.png", // Fallback until you have a real screenshot
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rishit Bafna | Portfolio",
     description: "Software engineer focused on reliable systems and polished web products.",
-    images: ["/og-image.png"], // Fallback
+    images: ["/og-image.png"],
   },
 };
 
@@ -62,7 +62,6 @@ export default function RootLayout({
         className={`${bebasNeue.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Header />
           {children}
         </ThemeProvider>
       </body>

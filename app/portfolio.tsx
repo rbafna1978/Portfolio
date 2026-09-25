@@ -18,9 +18,9 @@ import { useTheme } from "next-themes"
 import { Moon, Sun } from "lucide-react"
 import { Bio, skills, experiences, education, projects } from "@/data/constants"
 
-const RED = "var(--lab-red)"
-const LIME = "var(--lab-lime)"
-const INK = "var(--lab-ink)"
+const RED = "var(--red)"
+const LIME = "var(--lime)"
+const INK = "var(--ink)"
 // colour with alpha that also works for CSS variables
 const mix = (c: string, pct: number) => `color-mix(in srgb, ${c} ${pct}%, transparent)`
 const BEBAS = { fontFamily: "var(--font-bebas-neue), sans-serif" }
@@ -122,12 +122,12 @@ function Hero() {
         transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
         className="mt-10 flex flex-wrap items-end justify-between gap-6"
       >
-        <p className="max-w-xl text-lg text-lab-fg/70 sm:text-xl">
+        <p className="max-w-xl text-lg text-fg/70 sm:text-xl">
           Software engineer building distributed systems and ML infrastructure. M.S. Computer Science at Arizona State University.
         </p>
         <div className="flex flex-wrap gap-3" style={MONO}>
-          <a href="#work" className={`${btn} text-lab-ink`} style={{ background: LIME }}>See my work ↓</a>
-          <a href={Bio.resume} target="_blank" rel="noreferrer" className={`${btn} border border-lab-fg/25`}>Resume ↗</a>
+          <a href="#work" className={`${btn} text-ink`} style={{ background: LIME }}>See my work ↓</a>
+          <a href={Bio.resume} target="_blank" rel="noreferrer" className={`${btn} border border-fg/25`}>Resume ↗</a>
         </div>
       </motion.div>
     </section>
@@ -138,12 +138,12 @@ function Hero() {
 const META: Record<number, { big: string; sub: string; hue: string }> = {
   0: { big: "<5ms", sub: "leader redirects · 5-node Raft cluster · zero data loss", hue: LIME },
   4: { big: "0.94", sub: "PR-AUC at 0.17% class imbalance · p99 < 50ms", hue: RED },
-  5: { big: "400ms", sub: "end-to-end over 100K+ CVE/CWE/CAPEC records", hue: "var(--lab-blue)" },
-  6: { big: "188K", sub: "laps · 172 races · multi-agent PPO", hue: "var(--lab-amber)" },
+  5: { big: "400ms", sub: "end-to-end over 100K+ CVE/CWE/CAPEC records", hue: "var(--blue)" },
+  6: { big: "188K", sub: "laps · 172 races · multi-agent PPO", hue: "var(--amber)" },
   1: { big: "C++", sub: "sockets + a hand-rolled thread pool. no frameworks.", hue: LIME },
-  2: { big: "DAG", sub: "dependency graphs · cycle detection · vuln checks", hue: "var(--lab-cyan)" },
-  3: { big: "STAR", sub: "live scoring of clarity, filler words, and pacing", hue: "var(--lab-amber)" },
-  7: { big: "plain", sub: "English explanations of macOS memory pressure", hue: "var(--lab-mint)" },
+  2: { big: "DAG", sub: "dependency graphs · cycle detection · vuln checks", hue: "var(--cyan)" },
+  3: { big: "STAR", sub: "live scoring of clarity, filler words, and pacing", hue: "var(--amber)" },
+  7: { big: "plain", sub: "English explanations of macOS memory pressure", hue: "var(--mint)" },
 }
 const sorted = [...projects].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
 
@@ -166,11 +166,11 @@ function Card({ p, i }: { p: (typeof sorted)[number]; i: number }) {
           mx.set(((e.clientX - b.left) / b.width) * 100)
           my.set(((e.clientY - b.top) / b.height) * 100)
         }}
-        className="sticky grid h-[78vh] min-h-[460px] origin-top grid-rows-[auto_1fr_auto] overflow-hidden rounded-3xl border border-lab-fg/10 bg-lab-card p-6 sm:p-10"
+        className="sticky grid h-[78vh] min-h-[460px] origin-top grid-rows-[auto_1fr_auto] overflow-hidden rounded-3xl border border-fg/10 bg-card p-6 sm:p-10"
       >
         <motion.div className="pointer-events-none absolute inset-0" style={{ background: spot }} />
-        <motion.div className="pointer-events-none absolute inset-0 bg-lab-ink" style={{ opacity: dim }} />
-        <div className="relative flex items-start justify-between text-xs uppercase tracking-[0.25em] text-lab-fg/60" style={MONO}>
+        <motion.div className="pointer-events-none absolute inset-0 bg-ink" style={{ opacity: dim }} />
+        <div className="relative flex items-start justify-between text-xs uppercase tracking-[0.25em] text-fg/60" style={MONO}>
           <span>Case {String(i + 1).padStart(2, "0")} / {p.category}</span>
           <span>{p.date}</span>
         </div>
@@ -179,19 +179,19 @@ function Card({ p, i }: { p: (typeof sorted)[number]; i: number }) {
           <div className="leading-[0.85]" style={{ ...BEBAS, fontSize: "clamp(5rem, 17vw, 15rem)", color: m.hue }}>
             <Scramble text={m.big} />
           </div>
-          <div className="mt-3 max-w-xl text-sm uppercase tracking-widest text-lab-fg/60" style={MONO}>{m.sub}</div>
+          <div className="mt-3 max-w-xl text-sm uppercase tracking-widest text-fg/60" style={MONO}>{m.sub}</div>
         </div>
 
         <div className="relative grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
-            <h3 className="text-3xl text-lab-fg sm:text-4xl" style={BEBAS}>{p.title}</h3>
-            <p className="mt-2 line-clamp-3 max-w-2xl text-sm text-lab-fg/60">{p.description}</p>
+            <h3 className="text-3xl text-fg sm:text-4xl" style={BEBAS}>{p.title}</h3>
+            <p className="mt-2 line-clamp-3 max-w-2xl text-sm text-fg/60">{p.description}</p>
           </div>
           <div className="flex flex-wrap items-center gap-2 lg:justify-end">
             {p.tags.slice(0, 4).map((t) => (
-              <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-xs text-lab-fg/70" style={MONO}>{t}</span>
+              <span key={t} className="rounded-full border border-fg/15 px-3 py-1 text-xs text-fg/70" style={MONO}>{t}</span>
             ))}
-            {p.github && <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full px-5 text-xs font-medium text-lab-ink" style={{ background: m.hue }}>GitHub ↗</a>}
+            {p.github && <a href={p.github} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full px-5 text-xs font-medium text-ink" style={{ background: m.hue }}>GitHub ↗</a>}
             {p.liveUrl && <a href={p.liveUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center rounded-full border px-5 text-xs" style={{ borderColor: m.hue, color: m.hue }}>Live ↗</a>}
           </div>
         </div>
@@ -206,8 +206,8 @@ function Race({ label, value, pct, color, delay }: { label: string; value: strin
   const inView = useInView(ref, { once: true, margin: "-20%" })
   return (
     <div ref={ref}>
-      <div className="mb-2 flex justify-between text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}><span>{label}</span><span style={{ color }}>{value}</span></div>
-      <div className="h-6 overflow-hidden rounded-full bg-lab-fg/5">
+      <div className="mb-2 flex justify-between text-xs uppercase tracking-widest text-fg/60" style={MONO}><span>{label}</span><span style={{ color }}>{value}</span></div>
+      <div className="h-6 overflow-hidden rounded-full bg-fg/5">
         <motion.div
           className="h-full rounded-full"
           style={{ background: color, boxShadow: `0 0 24px ${mix(color, 53)}` }}
@@ -247,19 +247,19 @@ function Proof() {
     <section id="proof" className="px-6 py-32 lg:px-12">
       <Head n="02" title="Proof, not adjectives" />
       <div className="mt-16 grid gap-6 lg:grid-cols-2">
-        <div className="rounded-3xl border border-lab-fg/10 bg-lab-card p-8">
-          <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>Winssoft · analytics dashboard load</div>
+        <div className="rounded-3xl border border-fg/10 bg-card p-8">
+          <div className="text-xs uppercase tracking-widest text-fg/60" style={MONO}>Winssoft · analytics dashboard load</div>
           <div className="mt-8 space-y-6">
             <Race label="Before · composite index missing" value="8.0s" pct={100} color={RED} delay={0} />
             <Race label="After · indexes + materialized views" value="2.0s" pct={25} color={LIME} delay={0} />
           </div>
-          <p className="mt-8 text-sm text-lab-fg/60">{experiences[1].desc}</p>
+          <p className="mt-8 text-sm text-fg/60">{experiences[1].desc}</p>
         </div>
-        <div className="rounded-3xl border border-lab-fg/10 bg-lab-card p-8">
-          <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>J. Miller Custom Cues · design revision cycles</div>
+        <div className="rounded-3xl border border-fg/10 bg-card p-8">
+          <div className="text-xs uppercase tracking-widest text-fg/60" style={MONO}>J. Miller Custom Cues · design revision cycles</div>
           <div className="mt-8"><Dots /></div>
           <div className="mt-4 text-6xl" style={{ ...BEBAS, color: LIME }}>−35%</div>
-          <p className="mt-4 text-sm text-lab-fg/60">{experiences[0].desc}</p>
+          <p className="mt-4 text-sm text-fg/60">{experiences[0].desc}</p>
         </div>
       </div>
     </section>
@@ -276,7 +276,7 @@ function Ring({ pct, color, label }: { pct: number; color: string; label: string
   const C = 2 * Math.PI * R
   return (
     <svg ref={ref} viewBox="0 0 128 128" className="h-32 w-32 -rotate-90 overflow-visible">
-      <circle cx="64" cy="64" r={R} fill="none" stroke="color-mix(in srgb, var(--lab-fg) 8%, transparent)" strokeWidth="8" />
+      <circle cx="64" cy="64" r={R} fill="none" stroke="color-mix(in srgb, var(--fg) 8%, transparent)" strokeWidth="8" />
       <motion.circle
         cx="64" cy="64" r={R} fill="none" stroke={color} strokeWidth="8" strokeLinecap="round"
         strokeDasharray={C}
@@ -285,7 +285,7 @@ function Ring({ pct, color, label }: { pct: number; color: string; label: string
         transition={{ duration: 1.8, ease: EASE }}
         style={{ filter: `drop-shadow(0 0 6px ${color})` }}
       />
-      <text x="64" y="64" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-lab-fg text-[15px]" style={{ ...MONO, transformOrigin: "64px 64px" }}>{label}</text>
+      <text x="64" y="64" textAnchor="middle" dominantBaseline="central" className="rotate-90 fill-fg text-[15px]" style={{ ...MONO, transformOrigin: "64px 64px" }}>{label}</text>
     </svg>
   )
 }
@@ -313,23 +313,23 @@ function Education() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: i * 0.15, ease: EASE }}
-            className="relative overflow-hidden rounded-3xl border border-lab-fg/10 bg-lab-card p-8"
+            className="relative overflow-hidden rounded-3xl border border-fg/10 bg-card p-8"
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>{c.tag}</div>
-                <h3 className="mt-3 max-w-xs text-3xl leading-none text-lab-fg sm:text-4xl" style={BEBAS}>{c.e.degree}</h3>
-                <div className="mt-2 text-sm text-lab-fg/60">{c.e.school}</div>
+                <div className="text-xs uppercase tracking-widest text-fg/60" style={MONO}>{c.tag}</div>
+                <h3 className="mt-3 max-w-xs text-3xl leading-none text-fg sm:text-4xl" style={BEBAS}>{c.e.degree}</h3>
+                <div className="mt-2 text-sm text-fg/60">{c.e.school}</div>
               </div>
               <Ring pct={c.pct} color={c.color} label={c.label} />
             </div>
             <div className="mt-8 flex items-end gap-4">
               <div className="leading-[0.8]" style={{ ...BEBAS, fontSize: "clamp(5rem, 11vw, 9rem)", color: c.color }}><Scramble text={c.gpa} /></div>
-              <div className="pb-2 text-xs uppercase tracking-widest text-lab-fg/60" style={MONO}>GPA<br />{c.extra}</div>
+              <div className="pb-2 text-xs uppercase tracking-widest text-fg/60" style={MONO}>GPA<br />{c.extra}</div>
             </div>
             {i === 0 && (
               <div className="mt-6 flex flex-wrap gap-2">
-                {COURSES.map((t) => <span key={t} className="rounded-full border border-lab-fg/15 px-3 py-1 text-xs text-lab-fg/70" style={MONO}>{t}</span>)}
+                {COURSES.map((t) => <span key={t} className="rounded-full border border-fg/15 px-3 py-1 text-xs text-fg/70" style={MONO}>{t}</span>)}
               </div>
             )}
           </motion.div>
@@ -364,7 +364,7 @@ function Row({ items, dir, outline }: { items: string[]; dir: 1 | -1; outline?: 
   const line = items.join("  ✦  ") + "  ✦  "
   return (
     <div ref={host} aria-hidden className="overflow-hidden whitespace-nowrap">
-      <motion.div style={{ x, skewX: reduce ? 0 : skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "var(--lab-fg)" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
+      <motion.div style={{ x, skewX: reduce ? 0 : skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "var(--fg)" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
         {[0, 1, 2, 3].map((k) => <span key={k}>{line}</span>)}
       </motion.div>
     </div>
@@ -415,14 +415,14 @@ function Contact() {
     <section id="contact" className="px-6 pb-16 pt-32 lg:px-12">
       <Head n="05" title="Contact" />
       <div className="mt-16 flex flex-col items-start justify-between gap-12 lg:flex-row lg:items-center">
-        <h2 className="max-w-4xl leading-[0.85] text-lab-fg" style={{ ...BEBAS, fontSize: "clamp(3.5rem, 11vw, 10rem)" }}>
+        <h2 className="max-w-4xl leading-[0.85] text-fg" style={{ ...BEBAS, fontSize: "clamp(3.5rem, 11vw, 10rem)" }}>
           Let&apos;s build something that <span style={{ color: RED }}>doesn&apos;t fall over.</span>
         </h2>
         <Magnetic href={`mailto:${Bio.email}`}>Say<br />hello ↗</Magnetic>
       </div>
-      <div className="mt-24 flex flex-wrap gap-x-8 gap-y-2 text-sm text-lab-fg/60" style={MONO}>
+      <div className="mt-24 flex flex-wrap gap-x-8 gap-y-2 text-sm text-fg/60" style={MONO}>
         {[["GitHub", Bio.github], ["LinkedIn", Bio.linkedin], ["Resume", Bio.resume]].map(([l, h]) => (
-          <a key={l} href={h} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center uppercase tracking-widest transition-colors hover:text-lab-fg">{l} ↗</a>
+          <a key={l} href={h} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center uppercase tracking-widest transition-colors hover:text-fg">{l} ↗</a>
         ))}
         <span className="ml-auto">© {new Date().getFullYear()} Rishit Bafna</span>
       </div>
@@ -432,9 +432,9 @@ function Contact() {
 
 function Head({ n, title }: { n: string; title: string }) {
   return (
-    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8, ease: EASE }} className="flex items-baseline gap-4 border-b border-lab-fg/10 pb-4">
+    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8, ease: EASE }} className="flex items-baseline gap-4 border-b border-fg/10 pb-4">
       <span className="text-xs tracking-[0.3em]" style={{ ...MONO, color: LIME }}>{n}</span>
-      <h2 className="text-5xl uppercase text-lab-fg sm:text-7xl" style={BEBAS}>{title}</h2>
+      <h2 className="text-5xl uppercase text-fg sm:text-7xl" style={BEBAS}>{title}</h2>
     </motion.div>
   )
 }
@@ -476,11 +476,11 @@ function useSectionSpy() {
 function MobileNav() {
   const { active } = useSectionSpy()
   return (
-    <nav aria-label="Sections" className="fixed inset-x-0 top-0 z-50 flex items-center gap-3 border-b border-lab-fg/10 bg-lab-ink/85 py-2 pl-4 pr-20 backdrop-blur-md lg:hidden" style={MONO}>
-      <span className="text-2xl leading-none text-lab-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></span>
+    <nav aria-label="Sections" className="fixed inset-x-0 top-0 z-50 flex items-center gap-3 border-b border-fg/10 bg-ink/85 py-2 pl-4 pr-20 backdrop-blur-md lg:hidden" style={MONO}>
+      <span className="text-2xl leading-none text-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></span>
       <div className="flex min-w-0 flex-1 gap-1 overflow-x-auto [scrollbar-width:none]">
         {SECTIONS.map((s) => (
-          <a key={s.id} href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className="inline-flex min-h-11 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.15em]" style={{ color: active === s.id ? "var(--lab-ink)" : "color-mix(in srgb, var(--lab-fg) 65%, transparent)", background: active === s.id ? LIME : undefined }}>
+          <a key={s.id} href={`#${s.id}`} aria-current={active === s.id ? "true" : undefined} className="inline-flex min-h-11 shrink-0 items-center rounded-full px-3 text-xs uppercase tracking-[0.15em]" style={{ color: active === s.id ? "var(--ink)" : "color-mix(in srgb, var(--fg) 65%, transparent)", background: active === s.id ? LIME : undefined }}>
             {s.label}
           </a>
         ))}
@@ -502,17 +502,17 @@ function Sidebar() {
   }, [])
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-lab-fg/10 bg-lab-ink/80 p-8 backdrop-blur-xl lg:flex" style={MONO}>
+    <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between border-r border-fg/10 bg-ink/80 p-8 backdrop-blur-xl lg:flex" style={MONO}>
       <div>
-        <div className="text-3xl leading-none text-lab-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></div>
-        <div className="mt-2 text-xs uppercase tracking-[0.25em] text-lab-fg/60">Software Engineer</div>
+        <div className="text-3xl leading-none text-fg" style={BEBAS}>RB<span style={{ color: RED }}>.</span></div>
+        <div className="mt-2 text-xs uppercase tracking-[0.25em] text-fg/60">Software Engineer</div>
       </div>
 
       <nav aria-label="Sections" className="relative pl-6">
-        <div className="absolute bottom-0 left-0 top-0 w-px bg-lab-fg/10" />
+        <div className="absolute bottom-0 left-0 top-0 w-px bg-fg/10" />
         <motion.div className="absolute left-0 top-0 h-full w-px origin-top" style={{ scaleY: fill, background: LIME, boxShadow: `0 0 10px ${LIME}` }} />
         {SECTIONS.map((s, i) => (
-          <a key={s.id} href={`#${s.id}`} data-hover aria-current={active === s.id ? "true" : undefined} className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "var(--lab-fg)" : "color-mix(in srgb, var(--lab-fg) 62%, transparent)" }}>
+          <a key={s.id} href={`#${s.id}`} data-hover aria-current={active === s.id ? "true" : undefined} className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "var(--fg)" : "color-mix(in srgb, var(--fg) 62%, transparent)" }}>
             <span style={{ color: active === s.id ? LIME : undefined }}>{String(i).padStart(2, "0")}</span>
             <span className="transition-transform group-hover:translate-x-1">{s.label}</span>
             {active === s.id && <motion.span layoutId="dot" className="ml-auto h-1.5 w-1.5 rounded-full" style={{ background: LIME }} />}
@@ -520,10 +520,10 @@ function Sidebar() {
         ))}
       </nav>
 
-      <div className="space-y-1 text-xs uppercase tracking-[0.2em] text-lab-fg/60">
-        <div>Tempe, AZ · <span className="text-lab-fg/70">{time || "--:--:--"}</span></div>
+      <div className="space-y-1 text-xs uppercase tracking-[0.2em] text-fg/60">
+        <div>Tempe, AZ · <span className="text-fg/70">{time || "--:--:--"}</span></div>
         <div className="flex items-center gap-2"><span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: LIME }} />Open to opportunities</div>
-        <a href={Bio.resume} target="_blank" rel="noreferrer" data-hover className="mt-3 inline-block border-b border-lab-fg/30 pb-0.5 text-lab-fg/80 hover:text-lab-fg">Resume ↗</a>
+        <a href={Bio.resume} target="_blank" rel="noreferrer" data-hover className="mt-3 inline-block border-b border-fg/30 pb-0.5 text-fg/80 hover:text-fg">Resume ↗</a>
       </div>
     </aside>
   )
@@ -540,7 +540,7 @@ function ThemeToggle() {
       onClick={() => setTheme(dark ? "light" : "dark")}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       data-hover
-      className="fixed right-5 top-5 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-lab-fg/20 bg-lab-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
+      className="fixed right-5 top-5 z-[60] flex h-11 w-11 items-center justify-center rounded-full border border-fg/20 bg-ink/70 text-lg backdrop-blur-md transition-transform hover:scale-110"
     >
       {dark ? <Sun size={18} aria-hidden /> : <Moon size={18} aria-hidden />}
     </button>
@@ -548,14 +548,12 @@ function ThemeToggle() {
 }
 
 /* -------------------------------------------------------------------- page */
-export default function Lab() {
+export default function Portfolio() {
   return (
     <MotionConfig reducedMotion="user">
-    <div className="lab relative min-h-screen text-lab-fg" style={{ background: INK }}>
-      {/* hide the main site's header on this experimental route */}
-      <style>{`header{display:none!important}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}.lab a:focus-visible,.lab button:focus-visible{outline:2px solid var(--lab-lime);outline-offset:3px}section[id]{scroll-margin-top:3.5rem}`}</style>
+    <div className="relative min-h-screen text-fg" style={{ background: INK }}>
       <Cursor />
-      <a href="#work" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded focus:bg-lab-fg focus:px-4 focus:py-2 focus:text-lab-ink">Skip to work</a>
+      <a href="#work" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded focus:bg-fg focus:px-4 focus:py-2 focus:text-ink">Skip to work</a>
       <Sidebar />
       <MobileNav />
       <ThemeToggle />
