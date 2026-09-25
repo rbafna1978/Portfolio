@@ -350,7 +350,7 @@ function Row({ items, dir, outline }: { items: string[]; dir: 1 | -1; outline?: 
   const line = items.join("  ✦  ") + "  ✦  "
   return (
     <div className="overflow-hidden whitespace-nowrap">
-      <motion.div style={{ x, skewX: skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "#fff" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
+      <motion.div style={{ x, skewX: skew, ...BEBAS, ...(outline ? { WebkitTextStroke: `1.5px ${LIME}`, color: "transparent" } : { color: "var(--lab-fg)" }) }} className="flex w-max text-[clamp(4rem,10vw,9rem)] leading-none">
         {[0, 1, 2, 3].map((k) => <span key={k}>{line}</span>)}
       </motion.div>
     </div>
@@ -473,7 +473,7 @@ function Sidebar() {
         <div className="absolute bottom-0 left-0 top-0 w-px bg-lab-fg/10" />
         <motion.div className="absolute left-0 top-0 h-full w-px origin-top" style={{ scaleY: fill, background: LIME, boxShadow: `0 0 10px ${LIME}` }} />
         {SECTIONS.map((s, i) => (
-          <a key={s.id} href={`#${s.id}`} data-hover className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "#fff" : "color-mix(in srgb, var(--lab-fg) 33%, transparent)" }}>
+          <a key={s.id} href={`#${s.id}`} data-hover className="group flex items-baseline gap-3 py-3 text-xs uppercase tracking-[0.2em] transition-colors" style={{ color: active === s.id ? "var(--lab-fg)" : "color-mix(in srgb, var(--lab-fg) 33%, transparent)" }}>
             <span style={{ color: active === s.id ? LIME : undefined }}>{String(i).padStart(2, "0")}</span>
             <span className="transition-transform group-hover:translate-x-1">{s.label}</span>
             {active === s.id && <motion.span layoutId="dot" className="ml-auto h-1.5 w-1.5 rounded-full" style={{ background: LIME }} />}
