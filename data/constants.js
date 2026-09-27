@@ -118,8 +118,20 @@ export const projects = [
     liveUrl: "",
   },
   {
-    id: 0,
+    id: 8,
     order: 4,
+    title: "tensor-lang Compiler",
+    date: "2026",
+    description:
+      "A from-scratch compiler for a C-like language with statically shape-checked tensors and reverse-mode automatic differentiation: hand-written lexer, parser, and semantic analysis, emitting real LLVM IR through a native LLVM codegen backend. grad(f, i, args...) is a genuine compiler transform that rewrites a function's AST into its adjoint, not a runtime library, and two custom optimizations (operator fusion, cache-blocked matmul tiling) sit on top of LLVM's standard -O2 pipeline. Benchmarked at 1.53x on tiled matmul and 3.04x on fused elementwise chains versus the same compiler with those passes off, with both sides checked byte-identical before timing.",
+    tags: ["C++", "LLVM", "Flex/Bison", "Compilers", "Automatic Differentiation"],
+    category: "Systems",
+    github: "https://github.com/rbafna1978/c-compiler",
+    liveUrl: "",
+  },
+  {
+    id: 0,
+    order: 5,
     title: "Distributed Key-Value Store",
     date: "2025",
     description:
@@ -127,18 +139,6 @@ export const projects = [
     tags: ["Java", "Raft", "gRPC", "Protocol Buffers", "Distributed Systems"],
     category: "Systems",
     github: "https://github.com/rbafna1978/distributed-kv-store",
-    liveUrl: "",
-  },
-  {
-    id: 1,
-    order: 5,
-    title: "Multithreaded HTTP Server",
-    date: "2024",
-    description:
-      "High-performance web server built from scratch in C++ using socket programming and a custom thread pool to handle concurrent client connections efficiently.",
-    tags: ["C++", "Socket Programming", "Multithreading", "Systems"],
-    category: "Systems",
-    github: "https://github.com/rbafna1978/http-server",
     liveUrl: "",
   },
   {
@@ -187,18 +187,6 @@ export const projects = [
     tags: ["Python", "macOS", "CLI", "Homebrew"],
     category: "Systems",
     github: "https://github.com/rbafna1978/easymon",
-    liveUrl: "",
-  },
-  {
-    id: 8,
-    order: 9,
-    title: "tensor-lang Compiler",
-    date: "2026",
-    description:
-      "A from-scratch compiler for a C-like language with statically shape-checked tensors and reverse-mode automatic differentiation: hand-written lexer, parser, and semantic analysis, emitting real LLVM IR through a native LLVM codegen backend. grad(f, i, args...) is a genuine compiler transform that rewrites a function's AST into its adjoint, not a runtime library, and two custom optimizations (operator fusion, cache-blocked matmul tiling) sit on top of LLVM's standard -O2 pipeline. Benchmarked at 1.53x on tiled matmul and 3.04x on fused elementwise chains versus the same compiler with those passes off, with both sides checked byte-identical before timing.",
-    tags: ["C++", "LLVM", "Flex/Bison", "Compilers", "Automatic Differentiation"],
-    category: "Systems",
-    github: "https://github.com/rbafna1978/c-compiler",
     liveUrl: "",
   },
 ];

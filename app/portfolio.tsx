@@ -146,7 +146,6 @@ const META: Record<number, { big: string; sub: string; hue: string }> = {
   4: { big: "0.94", sub: "PR-AUC at 0.17% class imbalance · p99 < 50ms", hue: RED },
   5: { big: "400ms", sub: "end-to-end over 100K+ CVE/CWE/CAPEC records", hue: "var(--blue)" },
   6: { big: "188K", sub: "laps · 172 races · multi-agent PPO", hue: "var(--amber)" },
-  1: { big: "C++", sub: "sockets + a hand-rolled thread pool. no frameworks.", hue: LIME },
   2: { big: "DAG", sub: "dependency graphs · cycle detection · vuln checks", hue: "var(--cyan)" },
   3: { big: "STAR", sub: "live scoring of clarity, filler words, and pacing", hue: "var(--amber)" },
   7: { big: "plain", sub: "English explanations of macOS memory pressure", hue: "var(--mint)" },
