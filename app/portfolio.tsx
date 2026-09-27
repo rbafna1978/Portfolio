@@ -150,6 +150,7 @@ const META: Record<number, { big: string; sub: string; hue: string }> = {
   2: { big: "DAG", sub: "dependency graphs · cycle detection · vuln checks", hue: "var(--cyan)" },
   3: { big: "STAR", sub: "live scoring of clarity, filler words, and pacing", hue: "var(--amber)" },
   7: { big: "plain", sub: "English explanations of macOS memory pressure", hue: "var(--mint)" },
+  8: { big: "3.04x", sub: "fusion speedup · grad() as a real AST transform · 43 tests", hue: RED },
 }
 const sorted = [...projects].sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
 

@@ -189,4 +189,16 @@ export const projects = [
     github: "https://github.com/rbafna1978/easymon",
     liveUrl: "",
   },
+  {
+    id: 8,
+    order: 9,
+    title: "tensor-lang Compiler",
+    date: "2026",
+    description:
+      "A from-scratch compiler for a C-like language with statically shape-checked tensors and reverse-mode automatic differentiation: hand-written lexer, parser, and semantic analysis, emitting real LLVM IR through a native LLVM codegen backend. grad(f, i, args...) is a genuine compiler transform that rewrites a function's AST into its adjoint, not a runtime library, and two custom optimizations (operator fusion, cache-blocked matmul tiling) sit on top of LLVM's standard -O2 pipeline. Benchmarked at 1.53x on tiled matmul and 3.04x on fused elementwise chains versus the same compiler with those passes off, with both sides checked byte-identical before timing.",
+    tags: ["C++", "LLVM", "Flex/Bison", "Compilers", "Automatic Differentiation"],
+    category: "Systems",
+    github: "https://github.com/rbafna1978/c-compiler",
+    liveUrl: "",
+  },
 ];
